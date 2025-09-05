@@ -65,7 +65,7 @@
   .pill.b{border-color:rgba(0,180,255,.5);color:#e6f3ff;box-shadow:0 0 20px rgba(0,180,255,.18)}
   .pill.a{border-color:rgba(255,204,51,.5);color:#1a1700;background:linear-gradient(180deg,#ffe37a,#ffcc33);box-shadow:0 0 24px rgba(255,204,51,.28)}
 
-  /* ===== New: Terminal & Stats to fill hero ===== */
+  /* ===== Hero filler ===== */
   .hero-fill{max-width:980px;margin:18px auto 0;padding:0 10px}
   .terminal{
     border:1px solid var(--border); border-radius:14px; overflow:hidden;
@@ -152,16 +152,14 @@
     <a href="https://github.com/adilkhan7546" target="_blank" rel="noopener">GitHub</a>
   </div>
 
-  <!-- ===== NEW: hero filler (terminal + stats) ===== -->
+  <!-- ===== hero filler (terminal + stats) ===== -->
   <div class="hero-fill">
     <div class="terminal">
       <div class="t-bar">
         <span class="dot g"></span><span class="dot y"></span><span class="dot b"></span>
         <span class="t-title">adil@portfolio: ~/</span>
       </div>
-      <div class="t-body" id="term">
-        <!-- typed lines will appear here -->
-      </div>
+      <div class="t-body" id="term"></div>
     </div>
 
     <div class="stats">
@@ -211,6 +209,7 @@
     </div>
   </section>
 
+  <!-- ========= RESTORED PROJECTS ========= -->
   <section>
     <h2>Highlighted Projects</h2>
     <div class="grid two">
@@ -219,6 +218,7 @@
       <div class="card"><strong>100+ Web App Pentests</strong><p>Discovered SQLi, IDOR, XSS across internal/external apps; reduced unresolved vulns by ~30% with clear fixes.</p></div>
     </div>
   </section>
+  <!-- ===================================== -->
 
   <section>
     <h2>Certifications</h2>
@@ -284,7 +284,7 @@
     requestAnimationFrame(rain);
   })();
 
-  // ===== Terminal typing =====
+  // Terminal typing
   const term = document.getElementById('term');
   const script = [
     {type:'cmd', text:'whoami'},
