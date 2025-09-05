@@ -1,103 +1,103 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Name — Cybersecurity Portfolio</title>
-  <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;margin:0;line-height:1.6;background:#0b0f17;color:#e8eef6}
-    header{padding:48px 20px;text-align:center;background:linear-gradient(135deg,#0b0f17 0%,#12203a 100%)}
-    h1{margin:0 0 8px;font-size:34px}
-    .tag{opacity:.85}
-    main{max-width:960px;margin:0 auto;padding:32px 20px}
-    section{margin:28px 0;padding:20px;background:#111827;border:1px solid #1f2937;border-radius:14px}
-    h2{margin:0 0 14px;font-size:20px}
-    ul{margin:0;padding-left:18px}
-    a{color:#7dd3fc;text-decoration:none}
-    .grid{display:grid;gap:14px}
-    @media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
-    .badge{display:inline-block;padding:6px 10px;border:1px solid #334155;border-radius:999px;margin:4px 6px 0 0;font-size:13px}
-    footer{padding:32px 20px;text-align:center;opacity:.7}
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Adil Khan — Cybersecurity Portfolio</title>
+<meta name="description" content="Senior Penetration Tester specializing in Web, AD, CI/CD security.">
+<style>
+  :root{
+    --bg:#0b0f17;--card:#0f172a;--muted:#94a3b8;--text:#e5eef7;--accent:#7dd3fc;--border:#1f2937
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,Segoe UI,Inter,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  header{padding:56px 20px;text-align:center;background:linear-gradient(135deg,#0b0f17,#12203a)}
+  h1{margin:0 0 8px;font-size:36px}
+  .tag{opacity:.9}
+  main{max-width:1000px;margin:0 auto;padding:28px 16px}
+  section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin:18px 0}
+  h2{margin:0 0 10px;font-size:20px}
+  a{color:var(--accent);text-decoration:none}
+  .badges span{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:6px 10px;margin:6px 8px 0 0;font-size:13px}
+  .grid{display:grid;gap:14px}
+  @media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
+  .card{border:1px solid var(--border);background:#0c1324;border-radius:12px;padding:14px}
+  footer{padding:24px 16px;text-align:center;opacity:.7}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Your Name</h1>
-    <div class="tag">Senior Penetration Tester • AppSec • Red Team</div>
-    <div style="margin-top:10px">
-      <a href="mailto:you@example.com">you@example.com</a> ·
-      <a href="https://linkedin.com/in/yourprofile">LinkedIn</a> ·
-      <a href="https://github.com/yourusername">GitHub</a>
+<header>
+  <h1>Adil Khan</h1>
+  <div class="tag">Senior Penetration Tester · AppSec · Red Team</div>
+  <div style="margin-top:10px">
+    <a href="mailto:you@example.com">you@example.com</a> ·
+    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a> ·
+    <a href="https://github.com/adilkhan7546" target="_blank">GitHub</a>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2>About</h2>
+    <p>Cybersecurity specialist with 4+ years in VAPT, Active Directory exploitation, and CI/CD security for legal-grade environments. Trainer with 100k+ students across Udemy/YouTube.</p>
+    <div class="badges">
+      <span>OSCP</span><span>CEH (Practical)</span><span>CRTA</span>
+      <span>Burp Suite</span><span>BloodHound</span><span>Mimikatz</span>
+      <span>Frida</span><span>Semgrep</span><span>Docker/Linux</span>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section>
-      <h2>About</h2>
-      <p>Cybersecurity specialist with 4+ years in VAPT, AD exploitation, and CI/CD security. Delivered assessments for startups and SMEs; trained 100k+ learners via online courses.</p>
-      <div>
-        <span class="badge">OSCP</span>
-        <span class="badge">CEH (Practical)</span>
-        <span class="badge">CRTA</span>
-        <span class="badge">Python</span>
-        <span class="badge">Burp Suite</span>
-        <span class="badge">BloodHound</span>
-        <span class="badge">Frida</span>
-        <span class="badge">Semgrep</span>
+  <section>
+    <h2>Highlighted Projects</h2>
+    <div class="grid">
+      <div class="card">
+        <strong>Active Directory Attack Path Audit (Lab)</strong>
+        <p>Enumerated with BloodHound; Kerberoasting → PrivEsc → DCSync. Produced hardening checklist and detections.</p>
+        <a href="#">Report (PDF)</a> · <a href="#">Notes/Repo</a>
       </div>
-    </section>
-
-    <section>
-      <h2>Highlighted Projects</h2>
-      <div class="grid">
-        <div style="border:1px solid #1f2937;border-radius:12px;padding:14px;background:#0f172a">
-          <strong>Active Directory Attack Path Audit</strong>
-          <p>Enumerated AD with BloodHound; demonstrated Kerberoasting → DCSync (lab). Produced mitigations & hardening checklist.</p>
-          <a href="#">Report (PDF)</a> · <a href="#">Repo/Notes</a>
-        </div>
-        <div style="border:1px solid #1f2937;border-radius:12px;padding:14px;background:#0f172a">
-          <strong>Web VAPT — OWASP Top 10</strong>
-          <p>Found authz bypass + IDOR; validated impact with safe PoCs; mapped to CWE/CVSS; provided fix PRs.</p>
-          <a href="#">Redacted Report</a> · <a href="#">PoC Snippets</a>
-        </div>
-        <div style="border:1px solid #1f2937;border-radius:12px;padding:14px;background:#0f172a">
-          <strong>CI/CD Security Pipeline</strong>
-          <p>Semgrep + Bandit + SAST gating in GitHub Actions; SonarQube dashboard; artifacted JSON + HTML reports.</p>
-          <a href="#">pipeline.yml</a>
-        </div>
-        <div style="border:1px solid #1f2937;border-radius:12px;padding:14px;background:#0f172a">
-          <strong>Android App Research (Frida)</strong>
-          <p>Hooked token/session managers; secure storage review; proposed hardening (root/jailbreak, TLS pinning, SSO).</p>
-          <a href="#">Notes</a>
-        </div>
+      <div class="card">
+        <strong>Web VAPT — OWASP Top 10</strong>
+        <p>Found IDOR + authz bypass; CVSS scoring; secure fix PRs and WAF rules. Redacted evidence included.</p>
+        <a href="#">Redacted Report</a>
       </div>
-    </section>
+      <div class="card">
+        <strong>CI/CD Security Pipeline</strong>
+        <p>Semgrep/Bandit gates in GitHub Actions; SonarQube dashboard; JSON/HTML artifacts with SARIF upload.</p>
+        <a href="#">pipeline.yml</a>
+      </div>
+      <div class="card">
+        <strong>Android App Research (Frida)</strong>
+        <p>Hooked token & session managers; reviewed crypto usage; proposed hardening (TLS pinning, root checks).</p>
+        <a href="#">Research Notes</a>
+      </div>
+    </div>
+  </section>
 
-    <section>
-      <h2>Experience</h2>
-      <ul>
-        <li><strong>Senior Penetration Tester</strong> — ALT (Advance Legal Technology) — VAPT, AD, cloud, reports for legal-grade environments.</li>
-        <li><strong>Founder</strong> — Retech BD — Security training and consultancy; 100k+ learners (Udemy/YouTube).</li>
-      </ul>
-    </section>
+  <section>
+    <h2>Experience</h2>
+    <ul>
+      <li><strong>Senior Penetration Tester</strong> — ALT (Advance Legal Technology): Web, AD, Cloud; reporting & fixes.</li>
+      <li><strong>Founder</strong> — Retech BD: Security consultancy & training; 100k+ learners.</li>
+    </ul>
+  </section>
 
-    <section>
-      <h2>Publications & Talks</h2>
-      <ul>
-        <li>“Pentesting CPS & Smart Buildings” — slide deck + whitepaper.</li>
-        <li>Bug reports & writeups — web/AD/mobile (selected, sanitized).</li>
-      </ul>
-    </section>
+  <section>
+    <h2>Publications & Talks</h2>
+    <ul>
+      <li>Pentesting CPS & Smart Buildings — slide deck + whitepaper.</li>
+      <li>Selected write-ups (Web/AD/Mobile) — sanitized PoCs.</li>
+    </ul>
+  </section>
 
-    <section>
-      <h2>Contact</h2>
-      <p>Open to PenTest/AppSec roles and consulting. Email or DM on LinkedIn.</p>
-    </section>
-  </main>
+  <section>
+    <h2>Contact</h2>
+    <p>Open to PenTest/AppSec roles and consulting. Email or message on LinkedIn.</p>
+  </section>
+</main>
 
-  <footer>
-    © <span id="y"></span> Your Name — Hosted on GitHub Pages
-  </footer>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+<footer>
+  © <span id="y"></span> Adil Khan — Hosted on GitHub Pages
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
