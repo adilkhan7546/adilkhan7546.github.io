@@ -3,96 +3,140 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Adil Khan — Cybersecurity Portfolio</title>
-<meta name="description" content="Senior Penetration Tester specializing in Web, AD, CI/CD security.">
+<title>Adil Khan — Senior Penetration Tester</title>
+<meta name="description" content="Senior Penetration Tester: Web/API, AD, Cloud, Infra. OSCP+, OSCP, eJPT, CEH Practical.">
 <style>
   :root{
-    --bg:#0b0f17;--card:#0f172a;--muted:#94a3b8;--text:#e5eef7;--accent:#7dd3fc;--border:#1f2937
+    --bg:#0b0f17;--card:#0f172a;--muted:#94a3b8;--text:#e8eef6;--accent:#7dd3fc;--accent2:#a5b4fc;--border:#1f2937
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,Segoe UI,Inter,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-  header{padding:56px 20px;text-align:center;background:linear-gradient(135deg,#0b0f17,#12203a)}
-  h1{margin:0 0 8px;font-size:36px}
-  .tag{opacity:.9}
-  main{max-width:1000px;margin:0 auto;padding:28px 16px}
-  section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin:18px 0}
-  h2{margin:0 0 10px;font-size:20px}
+  body{margin:0;font-family:system-ui,Inter,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
   a{color:var(--accent);text-decoration:none}
+  header{padding:64px 20px;text-align:center;background:linear-gradient(135deg,#0b0f17 0%,#12203a 100%)}
+  h1{margin:0 0 8px;font-size:40px}
+  .tag{opacity:.9}
+  .links a{margin:0 6px;white-space:nowrap}
+  main{max-width:1100px;margin:0 auto;padding:28px 16px}
+  section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;margin:18px 0}
+  h2{margin:0 0 12px;font-size:22px}
   .badges span{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:6px 10px;margin:6px 8px 0 0;font-size:13px}
   .grid{display:grid;gap:14px}
-  @media(min-width:820px){.grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:880px){.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:repeat(3,1fr)}}
   .card{border:1px solid var(--border);background:#0c1324;border-radius:12px;padding:14px}
-  footer{padding:24px 16px;text-align:center;opacity:.7}
+  .muted{color:var(--muted)}
+  .list{padding-left:18px;margin:0}
+  footer{padding:28px 16px;text-align:center;opacity:.75}
+  .btn{display:inline-block;padding:10px 14px;border:1px solid var(--border);border-radius:10px;background:#0c1324}
+  .pill{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;margin-left:8px;font-size:12px;color:var(--accent2)}
 </style>
 </head>
 <body>
+
 <header>
   <h1>Adil Khan</h1>
-  <div class="tag">Senior Penetration Tester · AppSec · Red Team</div>
-  <div style="margin-top:10px">
-    <a href="mailto:you@example.com">you@example.com</a> ·
-    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a> ·
-    <a href="https://github.com/adilkhan7546" target="_blank">GitHub</a>
+  <div class="tag">Senior Penetration Tester <span class="pill">OSCP+ · OSCP · eJPT · CEH Practical</span></div>
+  <div class="links" style="margin-top:12px">
+    <a href="mailto:adil.khan7546@gmail.com">adil.khan7546@gmail.com</a> ·
+    <a href="https://linkedin.com/in/iamadk" target="_blank" rel="noopener">LinkedIn</a> ·
+    <a href="tel:+923015082358">+92-301-508-2358</a> ·
+    <a href="https://github.com/adilkhan7546" target="_blank" rel="noopener">GitHub</a>
   </div>
 </header>
 
 <main>
   <section>
-    <h2>About</h2>
-    <p>Cybersecurity specialist with 4+ years in VAPT, Active Directory exploitation, and CI/CD security for legal-grade environments. Trainer with 100k+ students across Udemy/YouTube.</p>
-    <div class="badges">
-      <span>OSCP</span><span>CEH (Practical)</span><span>CRTA</span>
-      <span>Burp Suite</span><span>BloodHound</span><span>Mimikatz</span>
-      <span>Frida</span><span>Semgrep</span><span>Docker/Linux</span>
-    </div>
+    <h2>Professional Summary</h2>
+    <p>Skilled and results-driven penetration tester with hands-on experience across web/API, infrastructure, Active Directory, and cloud. Strong in manual exploitation, secure code review, and delivering clear, actionable reports that drive remediation. Known for collaboration, mentoring, and embedding security into SDLC.</p>
   </section>
 
   <section>
-    <h2>Highlighted Projects</h2>
-    <div class="grid">
-      <div class="card">
-        <strong>Active Directory Attack Path Audit (Lab)</strong>
-        <p>Enumerated with BloodHound; Kerberoasting → PrivEsc → DCSync. Produced hardening checklist and detections.</p>
-        <a href="#">Report (PDF)</a> · <a href="#">Notes/Repo</a>
-      </div>
-      <div class="card">
-        <strong>Web VAPT — OWASP Top 10</strong>
-        <p>Found IDOR + authz bypass; CVSS scoring; secure fix PRs and WAF rules. Redacted evidence included.</p>
-        <a href="#">Redacted Report</a>
-      </div>
-      <div class="card">
-        <strong>CI/CD Security Pipeline</strong>
-        <p>Semgrep/Bandit gates in GitHub Actions; SonarQube dashboard; JSON/HTML artifacts with SARIF upload.</p>
-        <a href="#">pipeline.yml</a>
-      </div>
-      <div class="card">
-        <strong>Android App Research (Frida)</strong>
-        <p>Hooked token & session managers; reviewed crypto usage; proposed hardening (TLS pinning, root checks).</p>
-        <a href="#">Research Notes</a>
-      </div>
+    <h2>Core Skills</h2>
+    <div class="badges">
+      <span>Web/API · SAST & DAST</span><span>Infrastructure/AD</span><span>Cloud (AWS/GCP/Azure)</span>
+      <span>Burp Suite</span><span>OWASP ZAP</span><span>Metasploit</span><span>Nmap</span>
+      <span>Nessus/Nexpose</span><span>Acunetix</span><span>Semgrep</span><span>Snyk</span><span>Bearer</span>
+      <span>Linux/Windows Hardening</span><span>Cloudflare/Fortigate</span>
+      <span>Python</span><span>Bash</span><span>SOC/EDR (Kaspersky, Trend Micro)</span>
     </div>
   </section>
 
   <section>
     <h2>Experience</h2>
-    <ul>
-      <li><strong>Senior Penetration Tester</strong> — ALT (Advance Legal Technology): Web, AD, Cloud; reporting & fixes.</li>
-      <li><strong>Founder</strong> — Retech BD: Security consultancy & training; 100k+ learners.</li>
+    <div class="card">
+      <strong>Nayatel — Senior Penetration Tester</strong> <span class="muted">Feb 2022 – Present</span>
+      <ul class="list">
+        <li>End-to-end pentests across internal networks, web/mobile, cloud platforms, and APIs; drove remediation on critical findings.</li>
+        <li>Performed SAST/DAST and secure code review; built custom automation to cut manual effort ~25%.</li>
+        <li>Active Directory assessments (priv-esc, lateral movement) in hybrid environments.</li>
+        <li>Aligned testing with SDLC; trained developers; supported incident response and root-cause analysis.</li>
+      </ul>
+    </div>
+    <div class="card" style="margin-top:10px">
+      <strong>Junior Penetration Tester</strong>
+      <ul class="list">
+        <li>Found XSS, open redirects, and auth flaws; documented with clear evidence.</li>
+        <li>Practiced Windows/Linux priv-esc in labs; triaged SOC alerts via EDR.</li>
+        <li>Configured Cloudflare WAF (rate limiting, bot management, L7 protections); system hardening with DevOps.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Highlighted Projects</h2>
+    <div class="grid two">
+      <div class="card">
+        <strong>Automated Patch Deployment &amp; AI Fixer</strong>
+        <p>Integrated Semgrep + AI into CI/CD to prioritize findings; cut manual review time by ~40%.</p>
+      </div>
+      <div class="card">
+        <strong>Cloud Platform Pentesting</strong>
+        <p>Uncovered misconfigurations and escalation paths across environments; improved security posture by ~25%.</p>
+      </div>
+      <div class="card">
+        <strong>100+ Web App Pentests</strong>
+        <p>Discovered SQLi, IDOR, XSS across internal/external apps; reduced unresolved vulns by ~30% with clear fixes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Certifications</h2>
+    <div class="grid three">
+      <div class="card"><strong>OSCP+</strong><br><span class="muted">OffSec</span></div>
+      <div class="card"><strong>OSCP</strong><br><span class="muted">OffSec</span></div>
+      <div class="card"><strong>eJPT</strong><br><span class="muted">INE</span></div>
+      <div class="card"><strong>CEH</strong><br><span class="muted">EC-Council</span></div>
+      <div class="card"><strong>CEH Practical</strong></div>
+      <div class="card"><strong>CAP (AppSec Practitioner)</strong><br><span class="muted">SecOps Group</span></div>
+      <div class="card"><strong>Certified API Security Analyst</strong><br><span class="muted">APIsec</span></div>
+      <div class="card"><strong>Fortinet Cyber Security Associate</strong></div>
+      <div class="card"><strong>Certified Red Team Analyst</strong><br><span class="muted">Cyberwarfare Labs</span></div>
+      <div class="card"><strong>AWS Pentesting</strong><br><span class="muted">SimplyCyber</span></div>
+      <div class="card"><strong>Multi-Cloud Red Team Analyst</strong><br><span class="muted">CWL</span></div>
+    </div>
+    <p style="margin-top:8px" class="muted">Verification links available on request / LinkedIn.</p>
+  </section>
+
+  <section>
+    <h2>Awards</h2>
+    <ul class="list">
+      <li>PTA Awards (Shining Star / Excellence in audit readiness & vulnerability management).</li>
+      <li>Lesson Learnt Award; Star Trainee Award.</li>
     </ul>
   </section>
 
   <section>
-    <h2>Publications & Talks</h2>
-    <ul>
-      <li>Pentesting CPS & Smart Buildings — slide deck + whitepaper.</li>
-      <li>Selected write-ups (Web/AD/Mobile) — sanitized PoCs.</li>
-    </ul>
+    <h2>Education</h2>
+    <p><strong>Bachelor in Telecom Engineering</strong> — UET (CGPA 3.56)</p>
   </section>
 
   <section>
     <h2>Contact</h2>
-    <p>Open to PenTest/AppSec roles and consulting. Email or message on LinkedIn.</p>
+    <p>Email: <a href="mailto:adil.khan7546@gmail.com">adil.khan7546@gmail.com</a> · LinkedIn: <a href="https://linkedin.com/in/iamadk" target="_blank" rel="noopener">/in/iamadk</a> · Phone: <a href="tel:+923015082358">+92-301-508-2358</a></p>
   </section>
+
+  <!-- Optional: drop a resume PDF into /assets/ and update the link -->
+  <p><a class="btn" href="assets/Adil-Khan-Resume.pdf" target="_blank" rel="noopener">Download Resume (PDF)</a></p>
 </main>
 
 <footer>
