@@ -30,10 +30,10 @@
   .scanlines{position:fixed;inset:0;pointer-events:none;z-index:-1;background:repeating-linear-gradient(to bottom, rgba(255,255,255,.05) 0 1px, transparent 1px 3px);mix-blend-mode:overlay;opacity:.07}
 
   /* ===== Hero ===== */
-  header{padding:96px 20px 44px;text-align:center}
+  header{padding:64px 20px 22px;text-align:center}
   /* Avatar with animated neon ring */
   .avatar{
-    width:118px;height:118px;margin:0 auto 18px;position:relative;border-radius:50%;
+    width:118px;height:118px;margin:0 auto 14px;position:relative;border-radius:50%;
     filter:drop-shadow(0 0 18px rgba(0,255,229,.35)) drop-shadow(0 0 26px rgba(0,180,255,.25));
   }
   .avatar::before{
@@ -64,6 +64,30 @@
   .pill.c{border-color:rgba(0,255,229,.5);color:#e6fffb;box-shadow:0 0 20px rgba(0,255,229,.18)}
   .pill.b{border-color:rgba(0,180,255,.5);color:#e6f3ff;box-shadow:0 0 20px rgba(0,180,255,.18)}
   .pill.a{border-color:rgba(255,204,51,.5);color:#1a1700;background:linear-gradient(180deg,#ffe37a,#ffcc33);box-shadow:0 0 24px rgba(255,204,51,.28)}
+
+  /* ===== New: Terminal & Stats to fill hero ===== */
+  .hero-fill{max-width:980px;margin:18px auto 0;padding:0 10px}
+  .terminal{
+    border:1px solid var(--border); border-radius:14px; overflow:hidden;
+    background:linear-gradient(160deg,#0b0d19,#0e1630);
+    box-shadow:0 0 24px rgba(0,180,255,.18), inset 0 0 0 1px rgba(255,255,255,.03);
+    text-align:left;
+  }
+  .t-bar{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid #16203a;background:linear-gradient(180deg,#0f172a,#0c1324)}
+  .dot{width:10px;height:10px;border-radius:50%}
+  .dot.g{background:#22c55e}.dot.y{background:#eab308}.dot.b{background:#22d3ee}
+  .t-title{margin-left:6px;color:#84a3c9;font-size:12px}
+  .t-body{padding:14px 16px 18px;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;font-size:14px;color:#c3fdf5}
+  .line{white-space:pre-wrap}
+  .prompt{color:#7dd3fc}
+  .cmd{color:#a7f3d0}
+  .out{color:#9bd0ff}
+
+  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0 0}
+  @media(min-width:760px){.stats{grid-template-columns:repeat(4,1fr)}}
+  .stat{border:1px solid var(--border);border-radius:12px;padding:10px 12px;background:linear-gradient(180deg,#0e1630,#0b0d19);text-align:center;box-shadow:0 0 14px rgba(0,255,229,.08)}
+  .stat .value{font-weight:700;color:var(--cyan);text-shadow:0 0 12px rgba(0,255,229,.35);letter-spacing:.3px}
+  .stat .label{font-size:12px;color:var(--muted)}
 
   /* ===== Sections ===== */
   main{max-width:1100px;margin:0 auto;padding:24px 16px 60px}
@@ -126,6 +150,26 @@
     <a href="https://linkedin.com/in/iamadk" target="_blank" rel="noopener">LinkedIn</a> ·
     <a href="tel:+923015082358">+92-301-508-2358</a> ·
     <a href="https://github.com/adilkhan7546" target="_blank" rel="noopener">GitHub</a>
+  </div>
+
+  <!-- ===== NEW: hero filler (terminal + stats) ===== -->
+  <div class="hero-fill">
+    <div class="terminal">
+      <div class="t-bar">
+        <span class="dot g"></span><span class="dot y"></span><span class="dot b"></span>
+        <span class="t-title">adil@portfolio: ~/</span>
+      </div>
+      <div class="t-body" id="term">
+        <!-- typed lines will appear here -->
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="value">Web / API</div><div class="label">Penetration Testing</div></div>
+      <div class="stat"><div class="value">AD & Infra</div><div class="label">Escalation & Lateral Move</div></div>
+      <div class="stat"><div class="value">Cloud</div><div class="label">AWS · Azure · GCP</div></div>
+      <div class="stat"><div class="value">SDLC</div><div class="label">SAST · DAST · Code Review</div></div>
+    </div>
   </div>
 </header>
 
@@ -226,8 +270,9 @@
   function size(){c.width=innerWidth;c.height=innerHeight}
   size(); addEventListener('resize',size);
   const chars='アカサタナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ$#*+-/'.split('');
-  const cols=Math.floor(c.width/18); let drops=new Array(cols).fill(1);
-  function rain(){
+  let cols=Math.floor(c.width/18); let drops=new Array(cols).fill(1);
+  addEventListener('resize',()=>{cols=Math.floor(c.width/18);drops=new Array(cols).fill(1);});
+  (function rain(){
     x.fillStyle='rgba(5,6,12,0.08)'; x.fillRect(0,0,c.width,c.height);
     x.fillStyle='rgba(0,255,138,0.85)'; x.font='16px monospace';
     for(let i=0;i<drops.length;i++){
@@ -237,7 +282,40 @@
       drops[i]++;
     }
     requestAnimationFrame(rain);
-  } rain();
+  })();
+
+  // ===== Terminal typing =====
+  const term = document.getElementById('term');
+  const script = [
+    {type:'cmd', text:'whoami'},
+    {type:'out', text:'adil'},
+    {type:'cmd', text:'nmap -sC -sV adilkhan.dev'},
+    {type:'out', text:'80/tcp  open  http   GitHub Pages\\n443/tcp open  https  GitHub Pages'},
+    {type:'cmd', text:'skills'},
+    {type:'out', text:'web/api · AD/infra · cloud · code review · SAST/DAST'},
+    {type:'cmd', text:'open resume.pdf  # press ⏎ to download'},
+  ];
+  const prompt = 'adil@portfolio:~$ ';
+  let li = 0, ci = 0, activeLine;
+  function newLine(cls, prefix){
+    const div=document.createElement('div'); div.className='line';
+    if(cls==='cmd'){div.innerHTML = '<span class="prompt">'+prefix+'</span><span class="cmd"></span>';}
+    else {div.innerHTML = '<span class="out"></span>';}
+    term.appendChild(div);
+    activeLine = div.querySelector(cls==='cmd'?'.cmd':'.out');
+    term.parentElement.scrollTop = term.parentElement.scrollHeight;
+  }
+  function typeNext(){
+    if(li>=script.length) return;
+    const item=script[li];
+    if(ci===0){ newLine(item.type, prompt); }
+    const txt=item.text.replace(/\\n/g,'\n');
+    activeLine.textContent = txt.slice(0, ++ci);
+    term.parentElement.scrollTop = term.parentElement.scrollHeight;
+    if(ci < txt.length){ setTimeout(typeNext, 20); }
+    else { ci=0; li++; setTimeout(typeNext, 350); }
+  }
+  typeNext();
 
   // Lightbox
   const links=[...document.querySelectorAll('a.lb')];
