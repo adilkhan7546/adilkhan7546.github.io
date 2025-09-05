@@ -19,7 +19,7 @@
   body{margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg2);color:var(--text);line-height:1.65;overflow-x:hidden}
   a{color:var(--cyan);text-decoration:none;transition:.2s} a:hover{color:var(--green)}
 
-  /* ==== Ambient backdrop: grid + noise + vignette ==== */
+  /* ==== Ambient backdrop ==== */
   .backdrop{position:fixed;inset:0;z-index:-2}
   .grad{position:absolute;inset:0;background:
     radial-gradient(1100px 700px at 18% 15%, rgba(0,229,255,.10), transparent 60%),
@@ -34,13 +34,16 @@
     background-size:240px 240px;mix-blend-mode:soft-light}
   .vignette{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 240px rgba(0,0,0,.5)}
 
-  /* ==== Corner brackets (subtle) ==== */
-  .edge{position:relative}
-  .edge::before,.edge::after{content:"";position:absolute;width:38px;height:38px;border:1px solid transparent;filter:drop-shadow(var(--glow-a)) drop-shadow(var(--glow-b))}
-  .edge::before{left:10px;top:10px;border-left-color:rgba(0,229,255,.5);border-top-color:rgba(0,229,255,.5)}
-  .edge::after{right:10px;bottom:10px;border-right-color:rgba(0,255,149,.45);border-bottom-color:rgba(0,255,149,.45)}
+  /* ==== BRACKETS — only for hero/console ==== */
+  .frame{position:relative}
+  .frame::before,.frame::after{
+    content:"";position:absolute;width:38px;height:38px;border:1px solid transparent;
+    filter:drop-shadow(var(--glow-a)) drop-shadow(var(--glow-b))
+  }
+  .frame::before{left:10px;top:10px;border-left-color:rgba(0,229,255,.5);border-top-color:rgba(0,229,255,.5)}
+  .frame::after{right:10px;bottom:10px;border-right-color:rgba(0,255,149,.45);border-bottom-color:rgba(0,255,149,.45)}
 
-  /* ==== Hero ==== */
+  /* ==== HERO ==== */
   header{padding:68px 16px 12px}
   .hero{max-width:980px;margin:0 auto;border:1px solid var(--border);border-radius:18px;background:linear-gradient(160deg,#0b1117,#0b1219);box-shadow:var(--glow-a),var(--glow-b)}
   .hero-inner{padding:26px 16px 18px;text-align:center;position:relative;overflow:hidden}
@@ -71,13 +74,12 @@
   .chip{display:inline-block;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08);
     background:linear-gradient(180deg,#0d141b,#0a1016);margin:6px 6px 0;font-size:13px;color:#cfefff;box-shadow:0 0 14px rgba(0,229,255,.10)}
   .chip--gold{color:#14210c;border-color:rgba(255,255,255,.08);background:linear-gradient(180deg,#ffe58e,#ffd54f)}
-
   .meta{margin-top:10px}
   .meta a{margin:0 8px;white-space:nowrap}
 
-  /* ==== Threat console (rotating lines) ==== */
+  /* ==== Threat console (compact) ==== */
   .hero-fill{max-width:980px;margin:16px auto 0;padding:0 10px}
-  .console.edge{border:1px solid var(--border);border-radius:14px;background:linear-gradient(160deg,#0a1117,#0a1016)}
+  .console.frame{border:1px solid var(--border);border-radius:14px;background:linear-gradient(160deg,#0a1117,#0a1016)}
   .c-head{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid #11202a;background:linear-gradient(180deg,#0e1720,#0a1016)}
   .c-dot{width:10px;height:10px;border-radius:50%;background:#17313b;box-shadow:0 0 6px rgba(0,229,255,.18)}
   .c-title{margin-left:6px;color:#88aac3;font-size:12px}
@@ -90,24 +92,26 @@
 
   .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0 0}
   @media(min-width:760px){.stats{grid-template-columns:repeat(4,1fr)}}
-  .stat.edge{border:1px solid var(--border);border-radius:12px;padding:10px 12px;background:linear-gradient(180deg,#0d161d,#0a1016);text-align:center}
+  .stat.panel{border:1px solid var(--border);border-radius:12px;padding:10px 12px;background:linear-gradient(180deg,#0d161d,#0a1016);text-align:center}
   .stat .value{font-weight:700;color:#eaf9ff;text-shadow:0 0 12px rgba(0,229,255,.15)}
   .stat .label{font-size:12px;color:var(--muted)}
 
-  /* ==== Sections ==== */
+  /* ==== Panels (no brackets) ==== */
   main{max-width:1100px;margin:0 auto;padding:22px 16px 60px}
-  section.edge{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;margin:18px 0;box-shadow:var(--glow-a)}
-  section.edge:hover{transform:translateY(-2px);box-shadow:0 0 22px rgba(0,229,255,.22)}
+  .panel{position:relative;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;margin:18px 0;box-shadow:var(--glow-a)}
+  .panel:hover{transform:translateY(-2px);box-shadow:0 0 22px rgba(0,229,255,.22)}
+  /* thin neon strip */
+  .panel::before{content:"";position:absolute;left:-1px;top:12px;bottom:12px;width:2px;border-radius:2px;background:linear-gradient(var(--cyan),var(--green));opacity:.55}
   h2{margin:0 0 12px;font-size:22px;color:#cafaff;text-shadow:0 0 12px rgba(0,229,255,.18)}
   .badges span{display:inline-block;border:1px solid #13212a;border-radius:999px;padding:6px 12px;margin:6px 8px 0 0;font-size:13px;background:#0a1218;color:#cfefff}
   .grid{display:grid;gap:14px}
   @media(min-width:880px){.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:repeat(3,1fr)}}
-  .card.edge{border:1px solid var(--border);background:linear-gradient(160deg,#0b1117,#0b1219);border-radius:12px;padding:14px;text-align:center}
-  .card.edge:hover{box-shadow:var(--glow-b);transform:scale(1.012)}
+  .card{border:1px solid var(--border);background:linear-gradient(160deg,#0b1117,#0b1219);border-radius:12px;padding:14px;text-align:center}
+  .card:hover{box-shadow:var(--glow-b);transform:scale(1.012)}
   .muted{color:var(--muted)}
   .list{padding-left:18px;margin:0}
-  .btn.edge{display:inline-block;padding:10px 16px;border:1px solid #18303a;border-radius:10px;background:#0e151a;color:#dffaff;text-transform:uppercase;letter-spacing:.6px}
-  .btn.edge:hover{background:#112029;box-shadow:var(--glow-a)}
+  .btn{display:inline-block;padding:10px 16px;border:1px solid #18303a;border-radius:10px;background:#0e151a;color:#dffaff;text-transform:uppercase;letter-spacing:.6px}
+  .btn:hover{background:#112029;box-shadow:var(--glow-a)}
   img.cert{width:100%;border-radius:10px;margin-bottom:8px;transition:transform .3s, box-shadow .3s}
   img.cert:hover{transform:scale(1.03);box-shadow:0 0 18px rgba(0,229,255,.18)}
   footer{padding:26px 16px;text-align:center;color:var(--muted)}
@@ -122,16 +126,6 @@
   .lb-prev{left:-56px}.lb-next{right:-56px}
   .lb-close{position:absolute;top:-46px;right:-6px;background:#0b1117;border:1px solid #14323e;color:#dffaff;padding:6px 12px;border-radius:8px;cursor:pointer}
   @media(max-width:680px){.lb-prev{left:6px}.lb-next{right:6px}.lb-close{top:8px;right:8px}}
-
-  /* ==== Command Palette ==== */
-  .cmdpal{position:fixed;inset:0;background:rgba(5,9,12,.75);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;z-index:99999}
-  .cmdpal.show{display:flex}
-  .cmd{width:min(720px,92vw);background:#0c141a;border:1px solid #12313b;border-radius:12px;box-shadow:var(--glow-a)}
-  .cmd h3{margin:0;padding:12px 14px;border-bottom:1px solid #12313b;color:#bfefff;font-weight:600}
-  .cmd .row{display:flex;gap:10px;align-items:center;padding:10px 14px;border-bottom:1px dashed #12242c}
-  .cmd .row:last-child{border-bottom:0}
-  .cmd a{color:#e7f6ff} .cmd a:hover{color:#00ff95}
-  .kbd{font-family:ui-monospace,monospace;border:1px solid #16404a;border-radius:6px;padding:0 6px;background:#0b1117;color:#9feaff}
 </style>
 </head>
 <body>
@@ -142,7 +136,7 @@
     <div class="vignette"></div>
   </div>
 
-<header class="edge hero">
+<header class="hero frame">
   <div class="hero-inner">
     <div class="radar"></div>
 
@@ -165,38 +159,35 @@
       <a href="https://linkedin.com/in/iamadk" target="_blank" rel="noopener">LinkedIn</a> ·
       <a href="tel:+923015082358">+92-301-508-2358</a> ·
       <a href="https://github.com/adilkhan7546" target="_blank" rel="noopener">GitHub</a>
-      <span style="opacity:.6;margin-left:8px">(<span class="kbd">/</span> opens Command Palette)</span>
     </div>
 
     <div class="hero-fill">
       <!-- Threat console -->
-      <div class="console edge">
+      <div class="console frame">
         <div class="c-head">
           <span class="c-dot"></span><span class="c-dot"></span><span class="c-dot"></span>
           <span class="c-title">threat-console — live</span>
         </div>
-        <div class="c-body" id="feed">
-          <!-- rows injected by JS -->
-        </div>
+        <div class="c-body" id="feed"></div>
       </div>
 
       <div class="stats">
-        <div class="stat edge"><div class="value">Web / API</div><div class="label">Penetration Testing</div></div>
-        <div class="stat edge"><div class="value">AD & Infra</div><div class="label">Escalation & Lateral Move</div></div>
-        <div class="stat edge"><div class="value">Cloud</div><div class="label">AWS · Azure · GCP</div></div>
-        <div class="stat edge"><div class="value">SDLC</div><div class="label">SAST · DAST · Code Review</div></div>
+        <div class="stat panel"><div class="value">Web / API</div><div class="label">Penetration Testing</div></div>
+        <div class="stat panel"><div class="value">AD & Infra</div><div class="label">Escalation & Lateral Move</div></div>
+        <div class="stat panel"><div class="value">Cloud</div><div class="label">AWS · Azure · GCP</div></div>
+        <div class="stat panel"><div class="value">SDLC</div><div class="label">SAST · DAST · Code Review</div></div>
       </div>
     </div>
   </div>
 </header>
 
 <main>
-  <section class="edge">
+  <section class="panel">
     <h2>Professional Summary</h2>
     <p>Skilled and results-driven penetration tester with hands-on experience across web/API, infrastructure, Active Directory, and cloud. Strong in manual exploitation, secure code review, and delivering clear, actionable reports that drive remediation. Known for collaboration, mentoring, and embedding security into SDLC.</p>
   </section>
 
-  <section class="edge">
+  <section class="panel">
     <h2>Core Skills</h2>
     <div class="badges">
       <span>Web/API · SAST & DAST</span><span>Infrastructure/AD</span><span>Cloud (AWS/GCP/Azure)</span>
@@ -207,9 +198,9 @@
     </div>
   </section>
 
-  <section class="edge">
+  <section class="panel">
     <h2>Experience</h2>
-    <div class="card edge">
+    <div class="card">
       <strong>Nayatel — Senior Penetration Tester</strong> <span class="muted">Feb 2022 – Present</span>
       <ul class="list">
         <li>End-to-end pentests across internal networks, web/mobile, cloud platforms, and APIs; drove remediation on critical findings.</li>
@@ -218,7 +209,7 @@
         <li>Aligned testing with SDLC; trained developers; supported incident response and root-cause analysis.</li>
       </ul>
     </div>
-    <div class="card edge" style="margin-top:10px">
+    <div class="card" style="margin-top:10px">
       <strong>Junior Penetration Tester</strong>
       <ul class="list">
         <li>Found XSS, open redirects, and auth flaws; documented with clear evidence.</li>
@@ -228,42 +219,33 @@
     </div>
   </section>
 
-  <section class="edge">
-    <h2>Highlighted Projects</h2>
-    <div class="grid two">
-      <div class="card edge"><strong>Automated Patch Deployment &amp; AI Fixer</strong><p>Integrated Semgrep + AI into CI/CD to prioritize findings; cut manual review time by ~40%.</p></div>
-      <div class="card edge"><strong>Cloud Platform Pentesting</strong><p>Uncovered misconfigurations and escalation paths across environments; improved security posture by ~25%.</p></div>
-      <div class="card edge"><strong>100+ Web App Pentests</strong><p>Discovered SQLi, IDOR, XSS across internal/external apps; reduced unresolved vulns by ~30% with clear fixes.</p></div>
-    </div>
-  </section>
-
-  <section class="edge">
+  <section class="panel" id="certs">
     <h2>Certifications</h2>
     <div class="grid three">
-      <div class="card edge"><a href="Pictures/OSCP+.png" class="lb" data-caption="OSCP+ — OffSec"><img src="Pictures/OSCP+.png" alt="OSCP+" class="cert"></a><strong>OSCP+</strong><br><span class="muted">OffSec</span></div>
-      <div class="card edge"><a href="Pictures/OSCP.png" class="lb" data-caption="OSCP — OffSec"><img src="Pictures/OSCP.png" alt="OSCP" class="cert"></a><strong>OSCP</strong><br><span class="muted">OffSec</span></div>
-      <div class="card edge"><a href="Pictures/ejpt.png" class="lb" data-caption="eJPT — INE"><img src="Pictures/ejpt.png" alt="eJPT" class="cert"></a><strong>eJPT</strong><br><span class="muted">INE</span></div>
-      <div class="card edge"><a href="Pictures/CEH.png" class="lb" data-caption="CEH — EC-Council"><img src="Pictures/CEH.png" alt="CEH" class="cert"></a><strong>CEH</strong><br><span class="muted">EC-Council</span></div>
-      <div class="card edge"><a href="Pictures/ceh-prac.png" class="lb" data-caption="CEH Practical"><img src="Pictures/ceh-prac.png" alt="CEH Practical" class="cert"></a><strong>CEH Practical</strong></div>
-      <div class="card edge"><a href="Pictures/Fortinet.png" class="lb" data-caption="Fortinet Cyber Security Associate"><img src="Pictures/Fortinet.png" alt="Fortinet" class="cert"></a><strong>Fortinet Cyber Security Associate</strong></div>
-      <div class="card edge"><a href="Pictures/crta.png" class="lb" data-caption="Certified Red Team Analyst — CWL"><img src="Pictures/crta.png" alt="CRTA" class="cert"></a><strong>Certified Red Team Analyst</strong></div>
-      <div class="card edge"><a href="Pictures/MCRTA.png" class="lb" data-caption="Multi-Cloud Red Team Analyst — CWL"><img src="Pictures/MCRTA.png" alt="MCRTA" class="cert"></a><strong>Multi-Cloud Red Team Analyst</strong></div>
-      <div class="card edge"><a href="Pictures/PT1.png" class="lb" data-caption="PT1 — Practical Pentesting"><img src="Pictures/PT1.png" alt="PT1" class="cert"></a><strong>PT1</strong></div>
+      <div class="card"><a href="Pictures/OSCP+.png" class="lb" data-caption="OSCP+ — OffSec"><img src="Pictures/OSCP+.png" alt="OSCP+" class="cert"></a><strong>OSCP+</strong><br><span class="muted">OffSec</span></div>
+      <div class="card"><a href="Pictures/OSCP.png" class="lb" data-caption="OSCP — OffSec"><img src="Pictures/OSCP.png" alt="OSCP" class="cert"></a><strong>OSCP</strong><br><span class="muted">OffSec</span></div>
+      <div class="card"><a href="Pictures/ejpt.png" class="lb" data-caption="eJPT — INE"><img src="Pictures/ejpt.png" alt="eJPT" class="cert"></a><strong>eJPT</strong><br><span class="muted">INE</span></div>
+      <div class="card"><a href="Pictures/CEH.png" class="lb" data-caption="CEH — EC-Council"><img src="Pictures/CEH.png" alt="CEH" class="cert"></a><strong>CEH</strong><br><span class="muted">EC-Council</span></div>
+      <div class="card"><a href="Pictures/ceh-prac.png" class="lb" data-caption="CEH Practical"><img src="Pictures/ceh-prac.png" alt="CEH Practical" class="cert"></a><strong>CEH Practical</strong></div>
+      <div class="card"><a href="Pictures/Fortinet.png" class="lb" data-caption="Fortinet Cyber Security Associate"><img src="Pictures/Fortinet.png" alt="Fortinet" class="cert"></a><strong>Fortinet Cyber Security Associate</strong></div>
+      <div class="card"><a href="Pictures/crta.png" class="lb" data-caption="Certified Red Team Analyst — CWL"><img src="Pictures/crta.png" alt="CRTA" class="cert"></a><strong>Certified Red Team Analyst</strong></div>
+      <div class="card"><a href="Pictures/MCRTA.png" class="lb" data-caption="Multi-Cloud Red Team Analyst — CWL"><img src="Pictures/MCRTA.png" alt="MCRTA" class="cert"></a><strong>Multi-Cloud Red Team Analyst</strong></div>
+      <div class="card"><a href="Pictures/PT1.png" class="lb" data-caption="PT1 — Practical Pentesting"><img src="Pictures/PT1.png" alt="PT1" class="cert"></a><strong>PT1</strong></div>
     </div>
     <p class="muted" style="margin-top:8px">Click any certificate to view full-size (← / → to navigate).</p>
   </section>
 
-  <section class="edge">
+  <section class="panel">
     <h2>Education</h2>
     <p><strong>Bachelor in Telecom Engineering</strong> — UET (CGPA 3.56)</p>
   </section>
 
-  <section class="edge">
+  <section class="panel">
     <h2>Contact</h2>
     <p>Email: <a href="mailto:adil.khan7546@gmail.com">adil.khan7546@gmail.com</a> · LinkedIn: <a href="https://linkedin.com/in/iamadk" target="_blank" rel="noopener">/in/iamadk</a> · Phone: <a href="tel:+923015082358">+92-301-508-2358</a></p>
   </section>
 
-  <p><a class="btn edge" href="assets/Adil-Khan-Resume.pdf" target="_blank" rel="noopener">Download Resume (PDF)</a></p>
+  <p><a class="btn" href="assets/Adil-Khan-Resume.pdf" target="_blank" rel="noopener">Download Resume (PDF)</a></p>
 </main>
 
 <footer>© <span id="y"></span> Adil Khan — Dark Edition</footer>
@@ -276,19 +258,6 @@
     <img class="lb-img" id="lbImg" alt="">
     <button class="lb-btn lb-next">›</button>
     <div class="lb-caption" id="lbCap"></div>
-  </div>
-</div>
-
-<!-- Command Palette -->
-<div class="cmdpal" id="cmdpal">
-  <div class="cmd">
-    <h3>Command Palette</h3>
-    <div class="row"><span class="kbd">R</span> <a href="assets/Adil-Khan-Resume.pdf" target="_blank" rel="noopener">Open Resume (PDF)</a></div>
-    <div class="row"><span class="kbd">G</span> <a href="https://github.com/adilkhan7546" target="_blank" rel="noopener">GitHub</a></div>
-    <div class="row"><span class="kbd">L</span> <a href="https://linkedin.com/in/iamadk" target="_blank" rel="noopener">LinkedIn</a></div>
-    <div class="row"><span class="kbd">E</span> <a href="mailto:adil.khan7546@gmail.com">Email Me</a></div>
-    <div class="row"><span class="kbd">C</span> <a href="#certs">Go to Certifications</a></div>
-    <div class="row"><span class="kbd">Esc</span> Close</div>
   </div>
 </div>
 
@@ -337,22 +306,6 @@
     if(e.key==='ArrowLeft') nav(-1);
     if(e.key==='ArrowRight') nav(1);
   });
-
-  /* === Command palette === */
-  const pal=document.getElementById('cmdpal');
-  function showPal(){pal.classList.add('show');}
-  function hidePal(){pal.classList.remove('show');}
-  addEventListener('keydown',e=>{
-    if(e.key==='/'){e.preventDefault();showPal();}
-    if(e.key==='Escape') hidePal();
-    if(!pal.classList.contains('show')) return;
-    if(e.key.toLowerCase()==='r') window.open('assets/Adil-Khan-Resume.pdf','_blank');
-    if(e.key.toLowerCase()==='g') window.open('https://github.com/adilkhan7546','_blank');
-    if(e.key.toLowerCase()==='l') window.open('https://linkedin.com/in/iamadk','_blank');
-    if(e.key.toLowerCase()==='e') window.location='mailto:adil.khan7546@gmail.com';
-    if(e.key.toLowerCase()==='c') {hidePal(); document.querySelector('h2').scrollIntoView({behavior:'smooth'});}
-  });
-  pal.addEventListener('click',e=>{if(e.target===pal) hidePal();});
 </script>
 </body>
 </html>
