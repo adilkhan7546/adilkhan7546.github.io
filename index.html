@@ -6,107 +6,87 @@
 <title>Adil Khan — Senior Penetration Tester</title>
 <meta name="description" content="Senior Penetration Tester: Web/API, AD, Cloud, Infra. OSCP+, OSCP, eJPT, CEH Practical.">
 <style>
-  /* ===== Dark Hacker Palette (no pinks) ===== */
+  /* ===== Dark Hacker Palette ===== */
   :root{
-    --bg:#0a0d12;         /* page background */
-    --bg2:#06090d;        /* deep layer */
-    --card:#0c1117;       /* card background */
-    --border:#121a22;     /* borders */
-    --text:#e6f3ff;       /* primary text */
-    --muted:#8aa0b2;      /* secondary text */
-    --cyan:#00e5ff;       /* cool neon */
-    --green:#00ff95;      /* second accent */
+    --bg:#090c10; --bg2:#070a0e;
+    --card:#0b1117; --border:#132029;
+    --text:#e7f6ff; --muted:#8aa0b2;
+    --cyan:#00e5ff; --green:#00ff95;
     --glow-a:0 0 18px rgba(0,229,255,.18);
     --glow-b:0 0 18px rgba(0,255,149,.18);
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg2);color:var(--text);line-height:1.65;overflow-x:hidden}
-  a{color:var(--cyan);text-decoration:none;transition:.2s}
-  a:hover{color:var(--green)}
+  a{color:var(--cyan);text-decoration:none;transition:.2s} a:hover{color:var(--green)}
 
-  /* ===== Ambient background: subtle glow + cyber grid + soft noise ===== */
-  .bg-wrap{position:fixed;inset:0;z-index:-2}
-  .bg-grad{
-    position:absolute;inset:0;z-index:-3;
-    background:
-      radial-gradient(1200px 800px at 20% 12%, rgba(0,229,255,.10), transparent 60%),
-      radial-gradient(1000px 700px at 80% 35%, rgba(0,255,149,.08), transparent 60%),
-      linear-gradient(135deg,#070b10 0%, #0a0f15 50%, #0b1017 100%);
-  }
-  .bg-grid{
-    position:absolute;inset:0;z-index:-2;opacity:.15;
-    background:
-      repeating-linear-gradient(0deg, transparent 0 31px, rgba(255,255,255,.06) 31px 32px),
-      repeating-linear-gradient(90deg, transparent 0 31px, rgba(255,255,255,.06) 31px 32px);
-    mask-image:radial-gradient(1000px 700px at 50% 35%, #000 50%, transparent 100%);
-  }
-  .bg-noise{
-    position:absolute;inset:0;z-index:-1;opacity:.035;pointer-events:none;
-    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><filter id="n"><feTurbulence baseFrequency="0.8" numOctaves="2" seed="7"/></filter><rect width="100%" height="100%" filter="url(%23n)"/></svg>');
-    background-size:240px 240px;mix-blend-mode:soft-light;
-  }
-  /* Soft vignette */
-  .bg-vignette{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 240px rgba(0,0,0,.45)}
+  /* ==== Ambient backdrop: grid + noise + vignette ==== */
+  .backdrop{position:fixed;inset:0;z-index:-2}
+  .grad{position:absolute;inset:0;background:
+    radial-gradient(1100px 700px at 18% 15%, rgba(0,229,255,.10), transparent 60%),
+    radial-gradient(1000px 700px at 80% 30%, rgba(0,255,149,.08), transparent 60%),
+    linear-gradient(135deg,#070a0e 0%, #0a0f15 50%, #0b1117 100%)}
+  .grid{position:absolute;inset:0;opacity:.14;background:
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(255,255,255,.06) 31px 32px),
+    repeating-linear-gradient(90deg,transparent 0 31px, rgba(255,255,255,.06) 31px 32px);
+    mask-image:radial-gradient(1000px 700px at 50% 35%, #000 55%, transparent 100%)}
+  .noise{position:absolute;inset:0;opacity:.035;pointer-events:none;background-image:
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140"><filter id="n"><feTurbulence baseFrequency="0.8" numOctaves="2" seed="7"/></filter><rect width="100%" height="100%" filter="url(%23n)"/></svg>');
+    background-size:240px 240px;mix-blend-mode:soft-light}
+  .vignette{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 240px rgba(0,0,0,.5)}
 
-  /* ===== Corner-bracket edge (neon but subtle) ===== */
+  /* ==== Corner brackets (subtle) ==== */
   .edge{position:relative}
-  .edge::before,.edge::after{
-    content:""; position:absolute; width:38px; height:38px; border:1px solid transparent;
-    filter:drop-shadow(var(--glow-a)) drop-shadow(var(--glow-b));
-  }
-  .edge::before{left:10px; top:10px; border-left-color:rgba(0,229,255,.5); border-top-color:rgba(0,229,255,.5)}
-  .edge::after{right:10px; bottom:10px; border-right-color:rgba(0,255,149,.45); border-bottom-color:rgba(0,255,149,.45)}
+  .edge::before,.edge::after{content:"";position:absolute;width:38px;height:38px;border:1px solid transparent;filter:drop-shadow(var(--glow-a)) drop-shadow(var(--glow-b))}
+  .edge::before{left:10px;top:10px;border-left-color:rgba(0,229,255,.5);border-top-color:rgba(0,229,255,.5)}
+  .edge::after{right:10px;bottom:10px;border-right-color:rgba(0,255,149,.45);border-bottom-color:rgba(0,255,149,.45)}
 
-  /* ===== Header (Hero) ===== */
-  header{padding:72px 16px 12px}
+  /* ==== Hero ==== */
+  header{padding:68px 16px 12px}
   .hero{max-width:980px;margin:0 auto;border:1px solid var(--border);border-radius:18px;background:linear-gradient(160deg,#0b1117,#0b1219);box-shadow:var(--glow-a),var(--glow-b)}
-  .hero-inner{padding:22px 16px 18px;text-align:center}
+  .hero-inner{padding:26px 16px 18px;text-align:center;position:relative;overflow:hidden}
 
-  .avatar{
-    width:116px;height:116px;margin:4px auto 14px;position:relative;border-radius:50%;
-    filter:drop-shadow(0 0 16px rgba(0,229,255,.22));
-  }
-  .avatar::before{
-    content:"";position:absolute;inset:-6px;border-radius:50%;
+  /* Radar behind avatar */
+  .radar{position:absolute;left:50%;top:-120px;width:520px;height:520px;transform:translateX(-50%);opacity:.28;pointer-events:none}
+  .radar::before{content:"";position:absolute;inset:0;border-radius:50%;
+    background:
+      radial-gradient(circle at center, rgba(0,229,255,.35) 1px, transparent 2px),
+      repeating-radial-gradient(circle at center, rgba(0,229,255,.12) 0 2px, transparent 2px 60px)}
+  .radar::after{content:"";position:absolute;inset:0;border-radius:50%;
+    background:conic-gradient(from 0deg, rgba(0,255,149,.32) 0deg 40deg, transparent 40deg 360deg);
+    filter:blur(1px); animation:spin 7.5s linear infinite}
+  @keyframes spin{to{transform:rotate(1turn)}}
+
+  .avatar{width:120px;height:120px;margin:0 auto 14px;position:relative;border-radius:50%;
+    filter:drop-shadow(0 0 18px rgba(0,229,255,.25))}
+  .avatar::before{content:"";position:absolute;inset:-6px;border-radius:50%;
     background:conic-gradient(from 0deg,rgba(0,229,255,.6),rgba(0,255,149,.6),rgba(0,229,255,.6));
     -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor; mask-composite:exclude; padding:6px; animation:ring 12s linear infinite;
-    opacity:.45;
-  }
-  .avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;filter:saturate(.85)}
+    -webkit-mask-composite:xor; mask-composite:exclude; padding:6px; animation:ring 12s linear infinite; opacity:.45}
+  .avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;filter:saturate(.9)}
   @keyframes ring{to{transform:rotate(1turn)}}
 
-  .title{
-    font-weight:900;font-size:56px;letter-spacing:.5px;margin:2px 0 6px;
-    text-shadow:0 0 28px rgba(0,229,255,.22), 0 0 18px rgba(0,255,149,.14);
-  }
+  .title{font-weight:900;font-size:56px;letter-spacing:.5px;margin:6px 0 6px;text-shadow:0 0 28px rgba(0,229,255,.22),0 0 18px rgba(0,255,149,.14)}
   .subtitle{font-size:22px;color:#d7e9f8}
-  .meta{margin:10px 0 0}
-
-  /* Pills */
   .chips{margin-top:12px}
-  .chip{
-    display:inline-block; padding:8px 12px; border-radius:999px;
-    border:1px solid rgba(255,255,255,.08);
-    background:linear-gradient(180deg,#0d141b,#0a1016);
-    margin:6px 6px 0; font-size:13px; color:#cfefff;
-    box-shadow:0 0 14px rgba(0,229,255,.10);
-  }
-  .chip--gold{color:#17210c;border-color:rgba(255,255,255,.06); background:linear-gradient(180deg,#ffe58e,#ffd54f)}
+  .chip{display:inline-block;padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.08);
+    background:linear-gradient(180deg,#0d141b,#0a1016);margin:6px 6px 0;font-size:13px;color:#cfefff;box-shadow:0 0 14px rgba(0,229,255,.10)}
+  .chip--gold{color:#14210c;border-color:rgba(255,255,255,.08);background:linear-gradient(180deg,#ffe58e,#ffd54f)}
 
-  .links a{margin:0 8px;white-space:nowrap}
+  .meta{margin-top:10px}
+  .meta a{margin:0 8px;white-space:nowrap}
 
-  /* ===== Terminal + Stats ===== */
-  .hero-fill{max-width:980px;margin:14px auto 0;padding:0 10px}
-  .terminal.edge{border:1px solid var(--border);border-radius:14px;overflow:hidden;background:linear-gradient(160deg,#0a1117,#0a1016)}
-  .t-bar{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid #11202a;background:linear-gradient(180deg,#0e1720,#0a1016)}
-  .dot{width:10px;height:10px;border-radius:50%;background:#17313b;box-shadow:0 0 6px rgba(0,229,255,.18)}
-  .t-title{margin-left:6px;color:#88aac3;font-size:12px}
-  .t-body{padding:14px 16px 18px;font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;font-size:14px;color:#d7eef7}
-  .line{white-space:pre-wrap}
-  .prompt{color:#79e7ff}
-  .cmd{color:#c7ffe9}
-  .out{color:#a9d2e8}
+  /* ==== Threat console (rotating lines) ==== */
+  .hero-fill{max-width:980px;margin:16px auto 0;padding:0 10px}
+  .console.edge{border:1px solid var(--border);border-radius:14px;background:linear-gradient(160deg,#0a1117,#0a1016)}
+  .c-head{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid #11202a;background:linear-gradient(180deg,#0e1720,#0a1016)}
+  .c-dot{width:10px;height:10px;border-radius:50%;background:#17313b;box-shadow:0 0 6px rgba(0,229,255,.18)}
+  .c-title{margin-left:6px;color:#88aac3;font-size:12px}
+  .c-body{padding:14px 16px 8px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}
+  .log{display:flex;gap:10px;align-items:center;margin:6px 0;color:#bfefff}
+  .tag{font-size:11px;border:1px solid #16313a;padding:2px 6px;border-radius:6px;color:#9be7ff}
+  .ldr{height:6px;flex:1;border-radius:999px;background:linear-gradient(90deg,rgba(0,229,255,.25),rgba(0,255,149,.25));position:relative;overflow:hidden}
+  .ldr::after{content:"";position:absolute;left:-30%;top:0;bottom:0;width:30%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:scan 2.6s linear infinite}
+  @keyframes scan{to{left:100%}}
 
   .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0 0}
   @media(min-width:760px){.stats{grid-template-columns:repeat(4,1fr)}}
@@ -114,7 +94,7 @@
   .stat .value{font-weight:700;color:#eaf9ff;text-shadow:0 0 12px rgba(0,229,255,.15)}
   .stat .label{font-size:12px;color:var(--muted)}
 
-  /* ===== Main sections ===== */
+  /* ==== Sections ==== */
   main{max-width:1100px;margin:0 auto;padding:22px 16px 60px}
   section.edge{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;margin:18px 0;box-shadow:var(--glow-a)}
   section.edge:hover{transform:translateY(-2px);box-shadow:0 0 22px rgba(0,229,255,.22)}
@@ -130,10 +110,9 @@
   .btn.edge:hover{background:#112029;box-shadow:var(--glow-a)}
   img.cert{width:100%;border-radius:10px;margin-bottom:8px;transition:transform .3s, box-shadow .3s}
   img.cert:hover{transform:scale(1.03);box-shadow:0 0 18px rgba(0,229,255,.18)}
-
   footer{padding:26px 16px;text-align:center;color:var(--muted)}
 
-  /* ===== Lightbox ===== */
+  /* ==== Lightbox ==== */
   .lb-overlay{position:fixed;inset:0;background:rgba(3,6,9,.92);display:none;align-items:center;justify-content:center;z-index:9999}
   .lb-overlay.show{display:flex}
   .lb-wrap{position:relative;max-width:min(92vw,1200px);max-height:90vh}
@@ -143,21 +122,30 @@
   .lb-prev{left:-56px}.lb-next{right:-56px}
   .lb-close{position:absolute;top:-46px;right:-6px;background:#0b1117;border:1px solid #14323e;color:#dffaff;padding:6px 12px;border-radius:8px;cursor:pointer}
   @media(max-width:680px){.lb-prev{left:6px}.lb-next{right:6px}.lb-close{top:8px;right:8px}}
+
+  /* ==== Command Palette ==== */
+  .cmdpal{position:fixed;inset:0;background:rgba(5,9,12,.75);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;z-index:99999}
+  .cmdpal.show{display:flex}
+  .cmd{width:min(720px,92vw);background:#0c141a;border:1px solid #12313b;border-radius:12px;box-shadow:var(--glow-a)}
+  .cmd h3{margin:0;padding:12px 14px;border-bottom:1px solid #12313b;color:#bfefff;font-weight:600}
+  .cmd .row{display:flex;gap:10px;align-items:center;padding:10px 14px;border-bottom:1px dashed #12242c}
+  .cmd .row:last-child{border-bottom:0}
+  .cmd a{color:#e7f6ff} .cmd a:hover{color:#00ff95}
+  .kbd{font-family:ui-monospace,monospace;border:1px solid #16404a;border-radius:6px;padding:0 6px;background:#0b1117;color:#9feaff}
 </style>
 </head>
 <body>
-  <!-- Ambient background layers -->
-  <div class="bg-wrap">
-    <div class="bg-grad"></div>
-    <canvas id="bg-canvas"></canvas>
-    <div class="bg-grid"></div>
-    <div class="bg-noise"></div>
-    <div class="bg-vignette"></div>
+  <div class="backdrop">
+    <div class="grad"></div>
+    <div class="grid"></div>
+    <div class="noise"></div>
+    <div class="vignette"></div>
   </div>
 
 <header class="edge hero">
   <div class="hero-inner">
-    <!-- Avatar -->
+    <div class="radar"></div>
+
     <div class="avatar">
       <img src="Pictures/unnamed.jpg" alt="Adil Khan profile picture">
     </div>
@@ -177,16 +165,19 @@
       <a href="https://linkedin.com/in/iamadk" target="_blank" rel="noopener">LinkedIn</a> ·
       <a href="tel:+923015082358">+92-301-508-2358</a> ·
       <a href="https://github.com/adilkhan7546" target="_blank" rel="noopener">GitHub</a>
+      <span style="opacity:.6;margin-left:8px">(<span class="kbd">/</span> opens Command Palette)</span>
     </div>
 
-    <!-- Filler -->
     <div class="hero-fill">
-      <div class="terminal edge">
-        <div class="t-bar">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <span class="t-title">adil@portfolio: ~/</span>
+      <!-- Threat console -->
+      <div class="console edge">
+        <div class="c-head">
+          <span class="c-dot"></span><span class="c-dot"></span><span class="c-dot"></span>
+          <span class="c-title">threat-console — live</span>
         </div>
-        <div class="t-body" id="term"></div>
+        <div class="c-body" id="feed">
+          <!-- rows injected by JS -->
+        </div>
       </div>
 
       <div class="stats">
@@ -288,58 +279,45 @@
   </div>
 </div>
 
+<!-- Command Palette -->
+<div class="cmdpal" id="cmdpal">
+  <div class="cmd">
+    <h3>Command Palette</h3>
+    <div class="row"><span class="kbd">R</span> <a href="assets/Adil-Khan-Resume.pdf" target="_blank" rel="noopener">Open Resume (PDF)</a></div>
+    <div class="row"><span class="kbd">G</span> <a href="https://github.com/adilkhan7546" target="_blank" rel="noopener">GitHub</a></div>
+    <div class="row"><span class="kbd">L</span> <a href="https://linkedin.com/in/iamadk" target="_blank" rel="noopener">LinkedIn</a></div>
+    <div class="row"><span class="kbd">E</span> <a href="mailto:adil.khan7546@gmail.com">Email Me</a></div>
+    <div class="row"><span class="kbd">C</span> <a href="#certs">Go to Certifications</a></div>
+    <div class="row"><span class="kbd">Esc</span> Close</div>
+  </div>
+</div>
+
 <script>
   document.getElementById('y').textContent=new Date().getFullYear();
 
-  /* === Background canvas: drifting hex bytes (very subtle) === */
-  const c=document.getElementById('bg-canvas'),x=c.getContext('2d');
-  const HEX='0123456789ABCDEF'; let W,H,cols,drops;
-  function size(){W=c.width=innerWidth;H=c.height=innerHeight;cols=Math.floor(W/26);drops=new Array(cols).fill(1)}
-  size(); addEventListener('resize',size);
-  (function drift(){
-    x.fillStyle='rgba(6,10,14,0.08)'; x.fillRect(0,0,W,H);
-    x.fillStyle='rgba(207,239,255,0.25)'; x.font='14px ui-monospace, monospace';
-    for(let i=0;i<drops.length;i++){
-      const t=HEX[Math.floor(Math.random()*HEX.length)] + HEX[Math.floor(Math.random()*HEX.length)];
-      x.fillText(t,i*26,drops[i]*18);
-      if(drops[i]*18>H && Math.random()>0.975) drops[i]=0;
-      drops[i]+=0.7;
-    }
-    requestAnimationFrame(drift);
-  })();
-
-  /* === Terminal typing === */
-  const term=document.getElementById('term');
-  const lines=[
-    {type:'cmd', text:'whoami'},
-    {type:'out', text:'adil'},
-    {type:'cmd', text:'nmap -sC -sV adilkhan.dev'},
-    {type:'out', text:'80/tcp  open  http   GitHub Pages\\n443/tcp open  https  GitHub Pages'},
-    {type:'cmd', text:'skills'},
-    {type:'out', text:'web/api · ad/infra · cloud · code review · sast/dast'},
-    {type:'cmd', text:'open resume.pdf  # press ⏎ to download'}
+  /* === Threat console feed === */
+  const feed = document.getElementById('feed');
+  const rows = [
+    {tag:'SCAN', msg:'Recon web targets (subdomains, tech stack)'},
+    {tag:'AUTH', msg:'Testing session management & token flows'},
+    {tag:'IDOR', msg:'Object access checks on core APIs'},
+    {tag:'PRIV', msg:'Enumerating AD misconfigs & paths'},
+    {tag:'CLOUD', msg:'IAM drift & privilege escalation simulation'},
+    {tag:'SAST', msg:'Semgrep patterns + custom rules'},
+    {tag:'DAST', msg:'Automated + manual fuzzing'},
+    {tag:'REPORT', msg:'Evidence captured, fixes prioritized'},
   ];
-  const prompt='adil@portfolio:~$ ';
-  let li=0, ci=0, cur;
-  function newLine(kind){
-    const div=document.createElement('div'); div.className='line';
-    div.innerHTML = kind==='cmd'
-      ? '<span class="prompt">'+prompt+'</span><span class="cmd"></span>'
-      : '<span class="out"></span>';
-    term.appendChild(div);
-    cur = div.querySelector(kind==='cmd'?'.cmd':'.out');
-    term.parentElement.scrollTop = term.parentElement.scrollHeight;
+  let i=0;
+  function pushLine(){
+    const r=rows[i%rows.length];
+    const line=document.createElement('div'); line.className='log';
+    line.innerHTML=`<span class="tag">${r.tag}</span><span>${r.msg}</span><div class="ldr"></div>`;
+    feed.prepend(line);
+    while(feed.children.length>6) feed.lastChild.remove();
+    i++;
   }
-  (function type(){
-    if(li>=lines.length) return;
-    const item=lines[li];
-    if(ci===0) newLine(item.type);
-    const txt=item.text.replace(/\\n/g,'\n');
-    cur.textContent = txt.slice(0, ++ci);
-    term.parentElement.scrollTop = term.parentElement.scrollHeight;
-    if(ci < txt.length) setTimeout(type, 18);
-    else { ci=0; li++; setTimeout(type, 300); }
-  })();
+  for(let k=0;k<4;k++) pushLine();
+  setInterval(pushLine, 2200);
 
   /* === Lightbox === */
   const links=[...document.querySelectorAll('a.lb')];
@@ -359,6 +337,22 @@
     if(e.key==='ArrowLeft') nav(-1);
     if(e.key==='ArrowRight') nav(1);
   });
+
+  /* === Command palette === */
+  const pal=document.getElementById('cmdpal');
+  function showPal(){pal.classList.add('show');}
+  function hidePal(){pal.classList.remove('show');}
+  addEventListener('keydown',e=>{
+    if(e.key==='/'){e.preventDefault();showPal();}
+    if(e.key==='Escape') hidePal();
+    if(!pal.classList.contains('show')) return;
+    if(e.key.toLowerCase()==='r') window.open('assets/Adil-Khan-Resume.pdf','_blank');
+    if(e.key.toLowerCase()==='g') window.open('https://github.com/adilkhan7546','_blank');
+    if(e.key.toLowerCase()==='l') window.open('https://linkedin.com/in/iamadk','_blank');
+    if(e.key.toLowerCase()==='e') window.location='mailto:adil.khan7546@gmail.com';
+    if(e.key.toLowerCase()==='c') {hidePal(); document.querySelector('h2').scrollIntoView({behavior:'smooth'});}
+  });
+  pal.addEventListener('click',e=>{if(e.target===pal) hidePal();});
 </script>
 </body>
 </html>
