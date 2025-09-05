@@ -22,12 +22,14 @@
   .badges span{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:6px 10px;margin:6px 8px 0 0;font-size:13px}
   .grid{display:grid;gap:14px}
   @media(min-width:880px){.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:repeat(3,1fr)}}
-  .card{border:1px solid var(--border);background:#0c1324;border-radius:12px;padding:14px}
+  .card{border:1px solid var(--border);background:#0c1324;border-radius:12px;padding:14px;text-align:center}
   .muted{color:var(--muted)}
   .list{padding-left:18px;margin:0}
   footer{padding:28px 16px;text-align:center;opacity:.75}
   .btn{display:inline-block;padding:10px 14px;border:1px solid var(--border);border-radius:10px;background:#0c1324}
   .pill{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;margin-left:8px;font-size:12px;color:var(--accent2)}
+  img.cert{width:100%;border-radius:8px;margin-bottom:6px;transition:transform 0.3s ease, box-shadow 0.3s ease}
+  img.cert:hover{transform:scale(1.05);box-shadow:0 0 12px var(--accent2)}
 </style>
 </head>
 <body>
@@ -102,17 +104,15 @@
   <section>
     <h2>Certifications</h2>
     <div class="grid three">
-      <div class="card"><strong>OSCP+</strong><br><span class="muted">OffSec</span></div>
-      <div class="card"><strong>OSCP</strong><br><span class="muted">OffSec</span></div>
-      <div class="card"><strong>eJPT</strong><br><span class="muted">INE</span></div>
-      <div class="card"><strong>CEH</strong><br><span class="muted">EC-Council</span></div>
-      <div class="card"><strong>CEH Practical</strong></div>
-      <div class="card"><strong>CAP (AppSec Practitioner)</strong><br><span class="muted">SecOps Group</span></div>
-      <div class="card"><strong>Certified API Security Analyst</strong><br><span class="muted">APIsec</span></div>
-      <div class="card"><strong>Fortinet Cyber Security Associate</strong></div>
-      <div class="card"><strong>Certified Red Team Analyst</strong><br><span class="muted">Cyberwarfare Labs</span></div>
-      <div class="card"><strong>AWS Pentesting</strong><br><span class="muted">SimplyCyber</span></div>
-      <div class="card"><strong>Multi-Cloud Red Team Analyst</strong><br><span class="muted">CWL</span></div>
+      <div class="card"><img src="Pictures/OSCP+.png" alt="OSCP+" class="cert"><strong>OSCP+</strong><br><span class="muted">OffSec</span></div>
+      <div class="card"><img src="Pictures/OSCP.png" alt="OSCP" class="cert"><strong>OSCP</strong><br><span class="muted">OffSec</span></div>
+      <div class="card"><img src="Pictures/ejpt.png" alt="eJPT" class="cert"><strong>eJPT</strong><br><span class="muted">INE</span></div>
+      <div class="card"><img src="Pictures/CEH.png" alt="CEH" class="cert"><strong>CEH</strong><br><span class="muted">EC-Council</span></div>
+      <div class="card"><img src="Pictures/ceh-prac.png" alt="CEH Practical" class="cert"><strong>CEH Practical</strong></div>
+      <div class="card"><img src="Pictures/Fortinet.png" alt="Fortinet" class="cert"><strong>Fortinet Cyber Security Associate</strong></div>
+      <div class="card"><img src="Pictures/crta.png" alt="CRTA" class="cert"><strong>Certified Red Team Analyst</strong><br><span class="muted">Cyberwarfare Labs</span></div>
+      <div class="card"><img src="Pictures/MCRTA.png" alt="MCRTA" class="cert"><strong>Multi-Cloud Red Team Analyst</strong><br><span class="muted">CWL</span></div>
+      <div class="card"><img src="Pictures/PT1.png" alt="PT1" class="cert"><strong>PT1</strong><br><span class="muted">Practical Pentesting</span></div>
     </div>
     <p style="margin-top:8px" class="muted">Verification links available on request / LinkedIn.</p>
   </section>
@@ -135,7 +135,6 @@
     <p>Email: <a href="mailto:adil.khan7546@gmail.com">adil.khan7546@gmail.com</a> · LinkedIn: <a href="https://linkedin.com/in/iamadk" target="_blank" rel="noopener">/in/iamadk</a> · Phone: <a href="tel:+923015082358">+92-301-508-2358</a></p>
   </section>
 
-  <!-- Optional: drop a resume PDF into /assets/ and update the link -->
   <p><a class="btn" href="assets/Adil-Khan-Resume.pdf" target="_blank" rel="noopener">Download Resume (PDF)</a></p>
 </main>
 
