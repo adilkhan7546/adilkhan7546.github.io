@@ -6,34 +6,56 @@
 <title>Adil Khan — Portfolio</title>
 <meta name="description" content="Adil Khan — Senior Penetration Tester" />
 <style>
+  /* ===== Core palette (pure black theme) ===== */
   :root{
     --bg:#0a0d12;
     --panel:#0e1218;
     --panel-2:#0b0f15;
     --text:#e9eef4;
     --muted:#9aa9b7;
-    --accent:#3bd1ff;
-    --accent2:#6aa9ff;
+    --accent:#3bd1ff;   /* cyan */
+    --accent2:#6aa9ff;  /* soft blue */
     --border:#171d26;
   }
   *{box-sizing:border-box}
   html,body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.7 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
 
-  .nav{max-width:1100px;margin:0 auto;padding:18px 18px 10px;display:flex;align-items:center;justify-content:space-between}
-  .brand{display:flex;align-items:center;gap:14px;font-weight:700;font-size:22px}
-  .brand .marks{display:inline-grid;grid-auto-flow:column;gap:6px;transform:skewX(-10deg)}
-  .mark{width:18px;height:18px;border-left:4px solid var(--accent);border-top:4px solid var(--accent);border-radius:2px}
+  /* ===== Matrix canvas (subtle hacker vibe) ===== */
+  #matrix{
+    position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.08; /* super subtle */
+  }
+
+  /* ===== Top nav ===== */
+  .nav{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:18px 18px 10px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:22px;color:var(--text)}
+  /* Hacker-styled terminal tag */
+  .hacker-logo{
+    font-size:20px; font-family:"Courier New",monospace; color:#00ff88;
+    text-shadow:0 0 6px #00ff88, 0 0 12px #00ffcc;
+    font-weight:900; letter-spacing:.5px; user-select:none;
+    animation:flicker 2.5s infinite alternate;
+  }
+  @keyframes flicker{
+    0%{opacity:1; text-shadow:0 0 6px #00ff88,0 0 12px #00ffcc}
+    45%{opacity:.85; text-shadow:0 0 4px #00ffaa,0 0 10px #00ffcc}
+    60%{opacity:.7; text-shadow:0 0 3px #00ffaa}
+    100%{opacity:1; text-shadow:0 0 6px #00ff88,0 0 12px #00ffcc}
+  }
+  .brand span.name{font-weight:800; letter-spacing:.3px}
   .nav a{color:var(--text);opacity:.9;text-decoration:none;margin-left:20px}
   .nav a:hover{color:var(--accent)}
 
-  .wrap{max-width:1100px;margin:0 auto;padding:10px 18px 60px}
+  /* ===== Page frame ===== */
+  .wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:10px 18px 60px}
   h1{font-size:64px;line-height:1.05;margin:18px 0 6px}
   .rule{height:1px;background:linear-gradient(90deg,transparent, var(--border), transparent);margin:16px 0 32px}
 
-  .card{background:var(--panel);border:1px solid var(--border);border-radius:16px}
+  /* ===== Cards & sections ===== */
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:0 0 0 1px #0f1620}
   .section{margin-top:28px;padding:22px;background:var(--panel);border:1px solid var(--border);border-radius:16px}
   .section h3{margin:0 0 8px;font-size:22px;color:#dff6ff}
 
+  /* ===== About layout ===== */
   .about{display:grid;grid-template-columns:260px 1fr;gap:32px;align-items:start}
   @media(max-width:900px){.about{grid-template-columns:1fr}}
   .left{padding:22px;text-align:center}
@@ -52,6 +74,7 @@
   .bullets li{margin:6px 0}
   .tag{display:inline-block;margin-left:8px;font-size:12px;padding:3px 8px;border-radius:999px;color:#cfefff;background:#0d141c;border:1px solid #162330}
 
+  /* ===== Grids for Projects/Certs ===== */
   .grid{display:grid;gap:16px}
   .grid.two{grid-template-columns:repeat(2,1fr)}
   .grid.three{grid-template-columns:repeat(3,1fr)}
@@ -66,26 +89,21 @@
   .cert-card img:hover{transform:scale(1.03);box-shadow:0 0 18px rgba(59,209,255,.25)}
   .muted{color:var(--muted)}
 
-  .lb-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:9999}
-  .lb-overlay.show{display:flex}
-  .lb-wrap{position:relative;max-width:min(92vw,1200px);max-height:90vh}
-  .lb-img{max-width:100%;max-height:90vh;border-radius:12px;box-shadow:0 0 24px rgba(59,209,255,.4)}
-  .lb-caption{color:#cfefff;text-align:center;margin-top:10px}
-  .lb-btn{position:absolute;top:50%;transform:translateY(-50%);background:#0f141b;border:1px solid #1d2b38;color:#dff6ff;padding:10px 14px;border-radius:10px;cursor:pointer;font-size:18px}
-  .lb-prev{left:-56px}.lb-next{right:-56px}
-  .lb-close{position:absolute;top:-46px;right:-6px;background:#0f141b;border:1px solid #1d2b38;color:#dff6ff;padding:6px 12px;border-radius:8px;cursor:pointer}
-  @media(max-width:680px){.lb-prev{left:6px}.lb-next{right:6px}.lb-close{top:8px;right:8px}}
-
+  /* ===== Links & footer ===== */
   a{color:var(--accent)} a:hover{color:var(--accent2)}
   footer{max-width:1100px;margin:34px auto 28px;padding:0 18px;color:var(--muted);text-align:left}
 </style>
 </head>
 <body>
 
+  <!-- Subtle matrix rain canvas -->
+  <canvas id="matrix"></canvas>
+
+  <!-- Top navigation -->
   <nav class="nav">
     <div class="brand">
-      <span class="marks"><span class="mark"></span><span class="mark"></span></span>
-      Adil Khan
+      <div class="hacker-logo">[root@ADK]</div>
+      <span class="name">Adil Khan</span>
     </div>
     <div>
       <a href="#about">About</a>
@@ -101,7 +119,9 @@
     <h1 id="about">About</h1>
     <div class="rule"></div>
 
+    <!-- About -->
     <section class="about">
+      <!-- Left column -->
       <aside class="card left">
         <img class="avatar" src="Pictures/unnamed.jpg" alt="Adil Khan" />
         <div class="name">Adil Khan</div>
@@ -120,6 +140,7 @@
         </div>
       </aside>
 
+      <!-- Right column -->
       <div class="right">
         <div class="section">
           <h3>Hi, I’m Adil Khan <span class="tag">Senior Penetration Tester</span></h3>
@@ -141,7 +162,7 @@
           </ul>
         </div>
 
-        <!-- Experience -->
+        <!-- Expertise (portfolio-style experience) -->
         <div id="experience" class="section">
           <h3>Expertise</h3>
 
@@ -168,29 +189,68 @@
       </div>
     </section>
 
-    <!-- Projects -->
+    <!-- ===== Projects (full width) ===== -->
     <section id="projects" class="section">
       <h3>Projects</h3>
       <div class="grid three">
-        <div class="proj"><strong>Automated Patch Deployment & AI Fixer</strong> Integrated Semgrep + AI in CI/CD to triage and prioritize findings; reduced manual review time ~40%.<div class="meta">Stack: Semgrep · CI/CD · Python</div></div>
-        <div class="proj"><strong>Cloud Platform Pentesting</strong> Identified IAM misconfigs and escalation paths across multiple environments; improved posture by ~25%.<div class="meta">Stack: AWS · Azure · GCP · IAM</div></div>
-        <div class="proj"><strong>100+ Web/App/API Engagements</strong> Manual exploitation (SQLi, IDOR, XSS, auth flaws) with clear evidence and remediation guidance.<div class="meta">Stack: Burp · ZAP · Postman</div></div>
+        <div class="proj">
+          <strong>Automated Patch Deployment &amp; AI Fixer</strong>
+          Integrated Semgrep + AI in CI/CD to triage and prioritize findings; reduced manual review time ~40%.
+          <div class="meta">Stack: Semgrep · CI/CD · Python</div>
+        </div>
+        <div class="proj">
+          <strong>Cloud Platform Pentesting</strong>
+          Identified IAM misconfigs and escalation paths across multiple environments; improved posture by ~25%.
+          <div class="meta">Stack: AWS · Azure · GCP · IAM</div>
+        </div>
+        <div class="proj">
+          <strong>100+ Web/App/API Engagements</strong>
+          Manual exploitation (SQLi, IDOR, XSS, auth flaws) with clear evidence and remediation guidance.
+          <div class="meta">Stack: Burp · ZAP · Postman</div>
+        </div>
       </div>
     </section>
 
-    <!-- Certifications -->
+    <!-- ===== Certifications (full width, lightbox) ===== -->
     <section id="certs" class="section">
       <h3>Certifications</h3>
       <div class="grid three">
-        <div class="cert-card"><a class="lb" href="Pictures/OSCP+.png" data-caption="OSCP+ — OffSec"><img src="Pictures/OSCP+.png" alt="OSCP+"></a><div><strong>OSCP+</strong><div class="muted">OffSec</div></div></div>
-        <div class="cert-card"><a class="lb" href="Pictures/OSCP.png" data-caption="OSCP — OffSec"><img src="Pictures/OSCP.png" alt="OSCP"></a><div><strong>OSCP</strong><div class="muted">OffSec</div></div></div>
-        <div class="cert-card"><a class="lb" href="Pictures/ejpt.png" data-caption="eJPT — INE"><img src="Pictures/ejpt.png" alt="eJPT"></a><div><strong>eJPT</strong><div class="muted">INE</div></div></div>
-        <div class="cert-card"><a class="lb" href="Pictures/CEH.png" data-caption="CEH — EC-Council"><img src="Pictures/CEH.png" alt="CEH"></a><div><strong>CEH</strong><div class="muted">EC-Council</div></div></div>
-        <div class="cert-card"><a class="lb" href="Pictures/ceh-prac.png" data-caption="CEH Practical"><img src="Pictures/ceh-prac.png" alt="CEH Practical"></a><div><strong>CEH Practical</strong></div></div>
-        <div class="cert-card"><a class="lb" href="Pictures/Fortinet.png" data-caption="Fortinet Cyber Security Associate"><img src="Pictures/Fortinet.png" alt="Fortinet"></a><div><strong>Fortinet Cyber Security Associate</strong></div></div>
-        <div class="cert-card"><a class="lb" href="Pictures/crta.png" data-caption="Certified Red Team Analyst — CWL"><img src="Pictures/crta.png" alt="CRTA"></a><div><strong>Certified Red Team Analyst</strong></div></div>
-        <div class="cert-card"><a class="lb" href="Pictures/MCRTA.png" data-caption="Multi-Cloud Red Team Analyst — CWL"><img src="Pictures/MCRTA.png" alt="MCRTA"></a><div><strong>Multi-Cloud Red Team Analyst</strong></div></div>
-        <div class="cert-card"><a class="lb" href="Pictures/PT1.png" data-caption="PT1 — Practical Pentesting"><img src="Pictures/PT1.png" alt="PT1"></a><div><strong>PT1</strong></div></div>
+        <div class="cert-card">
+          <a class="lb" href="Pictures/OSCP+.png" data-caption="OSCP+ — OffSec"><img src="Pictures/OSCP+.png" alt="OSCP+"></a>
+          <div><strong>OSCP+</strong><div class="muted">OffSec</div></div>
+        </div>
+        <div class="cert-card">
+          <a class="lb" href="Pictures/OSCP.png" data-caption="OSCP — OffSec"><img src="Pictures/OSCP.png" alt="OSCP"></a>
+          <div><strong>OSCP</strong><div class="muted">OffSec</div></div>
+        </div>
+        <div class="cert-card">
+          <a class="lb" href="Pictures/ejpt.png" data-caption="eJPT — INE"><img src="Pictures/ejpt.png" alt="eJPT"></a>
+          <div><strong>eJPT</strong><div class="muted">INE</div></div>
+        </div>
+        <div class="cert-card">
+          <a class="lb" href="Pictures/CEH.png" data-caption="CEH — EC-Council"><img src="Pictures/CEH.png" alt="CEH"></a>
+          <div><strong>CEH</strong><div class="muted">EC-Council</div></div>
+        </div>
+        <div class="cert-card">
+          <a class="lb" href="Pictures/ceh-prac.png" data-caption="CEH Practical"><img src="Pictures/ceh-prac.png" alt="CEH Practical"></a>
+          <div><strong>CEH Practical</strong></div>
+        </div>
+        <div class="cert-card">
+          <a class="lb" href="Pictures/Fortinet.png" data-caption="Fortinet Cyber Security Associate"><img src="Pictures/Fortinet.png" alt="Fortinet"></a>
+          <div><strong>Fortinet Cyber Security Associate</strong></div>
+        </div>
+        <div class="cert-card">
+          <a class="lb" href="Pictures/crta.png" data-caption="Certified Red Team Analyst — CWL"><img src="Pictures/crta.png" alt="CRTA"></a>
+          <div><strong>Certified Red Team Analyst</strong></div>
+        </div>
+        <div class="cert-card">
+          <a class="lb" href="Pictures/MCRTA.png" data-caption="Multi-Cloud Red Team Analyst — CWL"><img src="Pictures/MCRTA.png" alt="MCRTA"></a>
+          <div><strong>Multi-Cloud Red Team Analyst</strong></div>
+        </div>
+        <div class="cert-card">
+          <a class="lb" href="Pictures/PT1.png" data-caption="PT1 — Practical Pentesting"><img src="Pictures/PT1.png" alt="PT1"></a>
+          <div><strong>PT1</strong></div>
+        </div>
       </div>
       <p class="muted" style="margin-top:8px">Click any certificate to view full-size (← / → to navigate).</p>
     </section>
@@ -212,7 +272,10 @@
   </div>
 
 <script>
+  /* Footer year */
   document.getElementById('y').textContent = new Date().getFullYear();
+
+  /* Simple lightbox */
   const links=[...document.querySelectorAll('a.lb')];
   const overlay=document.getElementById('lb'), img=document.getElementById('lbImg'), cap=document.getElementById('lbCap');
   const prev=overlay.querySelector('.lb-prev'), next=overlay.querySelector('.lb-next'), close=overlay.querySelector('.lb-close');
@@ -230,6 +293,34 @@
     if(e.key==='ArrowLeft') nav(-1);
     if(e.key==='ArrowRight') nav(1);
   });
+
+  /* Subtle Matrix Rain (keeps theme, very low opacity) */
+  const c=document.getElementById('matrix');
+  const ctx=c.getContext('2d');
+  const glyphs='01█▓▒░$#@*<>[]{}()+-_/\\|=';
+  let columns, drops;
+
+  function resize(){
+    c.width=window.innerWidth; c.height=window.innerHeight;
+    columns=Math.floor(c.width/16);
+    drops=new Array(columns).fill(1);
+  }
+  window.addEventListener('resize',resize); resize();
+
+  function draw(){
+    ctx.fillStyle='rgba(10,13,18,0.08)'; /* fade trail */
+    ctx.fillRect(0,0,c.width,c.height);
+    ctx.fillStyle='#00ff88';
+    ctx.font='16px monospace';
+    for(let i=0;i<drops.length;i++){
+      const text=glyphs[Math.floor(Math.random()*glyphs.length)];
+      ctx.fillText(text, i*16, drops[i]*16);
+      if(drops[i]*16>c.height && Math.random()>0.975){ drops[i]=0; }
+      drops[i]++;
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
 </script>
 </body>
 </html>
