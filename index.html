@@ -3,42 +3,37 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Adil Khan — About</title>
+<title>Adil Khan — Portfolio</title>
 <meta name="description" content="Adil Khan — Senior Penetration Tester" />
 <style>
-  /* ===== Core palette (pure black theme) ===== */
   :root{
     --bg:#0a0d12;
     --panel:#0e1218;
     --panel-2:#0b0f15;
     --text:#e9eef4;
     --muted:#9aa9b7;
-    --accent:#3bd1ff;   /* cyan */
-    --accent2:#6aa9ff;  /* soft blue */
+    --accent:#3bd1ff;
+    --accent2:#6aa9ff;
     --border:#171d26;
   }
   *{box-sizing:border-box}
   html,body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.7 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
 
-  /* ===== Top nav ===== */
   .nav{max-width:1100px;margin:0 auto;padding:18px 18px 10px;display:flex;align-items:center;justify-content:space-between}
   .brand{display:flex;align-items:center;gap:14px;font-weight:700;font-size:22px}
   .brand .marks{display:inline-grid;grid-auto-flow:column;gap:6px;transform:skewX(-10deg)}
-  .mark{width:18px;height:18px;border-left:4px solid var(--accent);border-top:4px solid var(--accent);border-right:0;border-bottom:0;border-radius:2px}
+  .mark{width:18px;height:18px;border-left:4px solid var(--accent);border-top:4px solid var(--accent);border-radius:2px}
   .nav a{color:var(--text);opacity:.9;text-decoration:none;margin-left:20px}
   .nav a:hover{color:var(--accent)}
 
-  /* ===== Page frame ===== */
   .wrap{max-width:1100px;margin:0 auto;padding:10px 18px 60px}
   h1{font-size:64px;line-height:1.05;margin:18px 0 6px}
   .rule{height:1px;background:linear-gradient(90deg,transparent, var(--border), transparent);margin:16px 0 32px}
 
-  /* ===== Cards & sections ===== */
   .card{background:var(--panel);border:1px solid var(--border);border-radius:16px}
   .section{margin-top:28px;padding:22px;background:var(--panel);border:1px solid var(--border);border-radius:16px}
   .section h3{margin:0 0 8px;font-size:22px;color:#dff6ff}
 
-  /* ===== About layout ===== */
   .about{display:grid;grid-template-columns:260px 1fr;gap:32px;align-items:start}
   @media(max-width:900px){.about{grid-template-columns:1fr}}
   .left{padding:22px;text-align:center}
@@ -57,7 +52,6 @@
   .bullets li{margin:6px 0}
   .tag{display:inline-block;margin-left:8px;font-size:12px;padding:3px 8px;border-radius:999px;color:#cfefff;background:#0d141c;border:1px solid #162330}
 
-  /* ===== Grids for Projects/Certs ===== */
   .grid{display:grid;gap:16px}
   .grid.two{grid-template-columns:repeat(2,1fr)}
   .grid.three{grid-template-columns:repeat(3,1fr)}
@@ -72,7 +66,6 @@
   .cert-card img:hover{transform:scale(1.03);box-shadow:0 0 18px rgba(59,209,255,.25)}
   .muted{color:var(--muted)}
 
-  /* ===== Lightbox ===== */
   .lb-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:9999}
   .lb-overlay.show{display:flex}
   .lb-wrap{position:relative;max-width:min(92vw,1200px);max-height:90vh}
@@ -83,14 +76,12 @@
   .lb-close{position:absolute;top:-46px;right:-6px;background:#0f141b;border:1px solid #1d2b38;color:#dff6ff;padding:6px 12px;border-radius:8px;cursor:pointer}
   @media(max-width:680px){.lb-prev{left:6px}.lb-next{right:6px}.lb-close{top:8px;right:8px}}
 
-  /* ===== Links ===== */
   a{color:var(--accent)} a:hover{color:var(--accent2)}
   footer{max-width:1100px;margin:34px auto 28px;padding:0 18px;color:var(--muted);text-align:left}
 </style>
 </head>
 <body>
 
-  <!-- Top navigation -->
   <nav class="nav">
     <div class="brand">
       <span class="marks"><span class="mark"></span><span class="mark"></span></span>
@@ -98,6 +89,7 @@
     </div>
     <div>
       <a href="#about">About</a>
+      <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#certs">Certifications</a>
@@ -109,9 +101,7 @@
     <h1 id="about">About</h1>
     <div class="rule"></div>
 
-    <!-- About -->
     <section class="about">
-      <!-- Left column -->
       <aside class="card left">
         <img class="avatar" src="Pictures/unnamed.jpg" alt="Adil Khan" />
         <div class="name">Adil Khan</div>
@@ -130,92 +120,77 @@
         </div>
       </aside>
 
-      <!-- Right column -->
       <div class="right">
         <div class="section">
           <h3>Hi, I’m Adil Khan <span class="tag">Senior Penetration Tester</span></h3>
           <p>Skilled penetration tester with hands-on experience across web/API, infrastructure, Active Directory, and cloud. Strong in manual exploitation, secure code review (SAST/DAST), and delivering actionable reports that drive remediation. I enjoy collaborating with engineers and embedding security into the SDLC.</p>
         </div>
 
-        <div id="experience" class="section">
-          <h3>Work Experience</h3>
-          <p><strong>Senior Penetration Tester</strong></p>
+        <!-- Technical Skills -->
+        <div id="skills" class="section">
+          <h3>Technical Skills</h3>
           <ul class="bullets">
-            <li>Led end-to-end penetration testing engagements across internal networks, web/mobile apps, cloud platforms, and APIs—identifying critical vulnerabilities and advising on remediation.</li>
-            <li>Performed SAST and DAST to uncover and validate security flaws in source code and live applications.</li>
-            <li>Conducted vulnerability assessments with Nessus and Nexpose, ensuring remediation within SLA timelines.</li>
-            <li>Executed manual &amp; automated Active Directory assessments involving privilege escalation and lateral movement in hybrid environments.</li>
-            <li>Automated testing tasks via custom scripts, reducing manual effort and improving repeatability—cutting manhours by approximately 25%.</li>
-            <li>Awareness of AI-related attack vectors, including prompt injection, model manipulation, and data poisoning techniques.</li>
-            <li>Aligned security testing with SDLC through daily meetings and trained developers on secure coding to reduce recurring vulnerabilities.</li>
-            <li>Collaborated with cross-functional teams during incident response to analyze root causes, contain threats, and implement long-term security improvements.</li>
+            <li><strong>Penetration Testing:</strong> Web (SAST + DAST), API, Infrastructure, Active Directory & Cloud</li>
+            <li><strong>Security Tools:</strong> Burp, ZAP, Metasploit, Nmap, Nessus, Nexpose, Acunetix, Semgrep, Snyk, Bearer</li>
+            <li><strong>Cloud Security:</strong> AWS</li>
+            <li><strong>Defense & Monitoring:</strong> Kaspersky EDR, Trend Micro EDR, SOC alert triage</li>
+            <li><strong>System Hardening:</strong> Linux, Windows</li>
+            <li><strong>Firewalls:</strong> Cloudflare, Fortigate</li>
+            <li><strong>Scripting & Automation:</strong> Python, Bash</li>
+            <li><strong>Labs & Simulation:</strong> TryHackMe, HackTheBox, PG Labs, CYBR, Pwned Labs</li>
+          </ul>
+        </div>
+
+        <!-- Experience -->
+        <div id="experience" class="section">
+          <h3>Expertise</h3>
+
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <img src="Pictures/nayatel.png" alt="Nayatel" style="height:40px;border-radius:6px;">
+            <p style="margin:0;"><strong>Senior Penetration Tester — Nayatel</strong> <span class="muted">(Feb 2022 – Present)</span></p>
+          </div>
+          <ul class="bullets">
+            <li>End-to-end pentesting across web, API, infra, AD & cloud.</li>
+            <li>Exploited flaws: SQLi, IDOR, XSS, privilege escalation.</li>
+            <li>Secure code reviews (SAST/DAST) with remediation guidance.</li>
+            <li>Automated assessments via Python/Bash (efficiency ↑25%).</li>
+            <li>Incident response support: RCA & long-term fixes.</li>
+          </ul>
+
+          <p><strong>Junior Penetration Tester — Nayatel</strong></p>
+          <ul class="bullets">
+            <li>Identified XSS, auth flaws, open redirects using Burp/ZAP.</li>
+            <li>Privilege escalation labs on Linux & Windows.</li>
+            <li>Assisted SOC: log analysis & EDR alert triage.</li>
+            <li>Configured Cloudflare WAF & performed system hardening.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- ===== Projects (full width) ===== -->
+    <!-- Projects -->
     <section id="projects" class="section">
       <h3>Projects</h3>
       <div class="grid three">
-        <div class="proj">
-          <strong>Automated Patch Deployment &amp; AI Fixer</strong>
-          Integrated Semgrep + AI in CI/CD to triage and prioritize findings; reduced manual review time ~40%.
-          <div class="meta">Stack: Semgrep · CI/CD · Python</div>
-        </div>
-        <div class="proj">
-          <strong>Cloud Platform Pentesting</strong>
-          Identified IAM misconfigs and escalation paths across multiple environments; improved posture by ~25%.
-          <div class="meta">Stack: AWS · Azure · GCP · IAM</div>
-        </div>
-        <div class="proj">
-          <strong>100+ Web/App/API Engagements</strong>
-          Manual exploitation (SQLi, IDOR, XSS, auth flaws) with clear evidence and remediation guidance.
-          <div class="meta">Stack: Burp · ZAP · Postman</div>
-        </div>
+        <div class="proj"><strong>Automated Patch Deployment & AI Fixer</strong> Integrated Semgrep + AI in CI/CD to triage and prioritize findings; reduced manual review time ~40%.<div class="meta">Stack: Semgrep · CI/CD · Python</div></div>
+        <div class="proj"><strong>Cloud Platform Pentesting</strong> Identified IAM misconfigs and escalation paths across multiple environments; improved posture by ~25%.<div class="meta">Stack: AWS · Azure · GCP · IAM</div></div>
+        <div class="proj"><strong>100+ Web/App/API Engagements</strong> Manual exploitation (SQLi, IDOR, XSS, auth flaws) with clear evidence and remediation guidance.<div class="meta">Stack: Burp · ZAP · Postman</div></div>
       </div>
     </section>
 
-    <!-- ===== Certifications (full width, lightbox) ===== -->
+    <!-- Certifications -->
     <section id="certs" class="section">
       <h3>Certifications</h3>
       <div class="grid three">
-        <div class="cert-card">
-          <a class="lb" href="Pictures/OSCP+.png" data-caption="OSCP+ — OffSec"><img src="Pictures/OSCP+.png" alt="OSCP+"></a>
-          <div><strong>OSCP+</strong><div class="muted">OffSec</div></div>
-        </div>
-        <div class="cert-card">
-          <a class="lb" href="Pictures/OSCP.png" data-caption="OSCP — OffSec"><img src="Pictures/OSCP.png" alt="OSCP"></a>
-          <div><strong>OSCP</strong><div class="muted">OffSec</div></div>
-        </div>
-        <div class="cert-card">
-          <a class="lb" href="Pictures/ejpt.png" data-caption="eJPT — INE"><img src="Pictures/ejpt.png" alt="eJPT"></a>
-          <div><strong>eJPT</strong><div class="muted">INE</div></div>
-        </div>
-        <div class="cert-card">
-          <a class="lb" href="Pictures/CEH.png" data-caption="CEH — EC-Council"><img src="Pictures/CEH.png" alt="CEH"></a>
-          <div><strong>CEH</strong><div class="muted">EC-Council</div></div>
-        </div>
-        <div class="cert-card">
-          <a class="lb" href="Pictures/ceh-prac.png" data-caption="CEH Practical"><img src="Pictures/ceh-prac.png" alt="CEH Practical"></a>
-          <div><strong>CEH Practical</strong></div>
-        </div>
-        <div class="cert-card">
-          <a class="lb" href="Pictures/Fortinet.png" data-caption="Fortinet Cyber Security Associate"><img src="Pictures/Fortinet.png" alt="Fortinet"></a>
-          <div><strong>Fortinet Cyber Security Associate</strong></div>
-        </div>
-        <div class="cert-card">
-          <a class="lb" href="Pictures/crta.png" data-caption="Certified Red Team Analyst — CWL"><img src="Pictures/crta.png" alt="CRTA"></a>
-          <div><strong>Certified Red Team Analyst</strong></div>
-        </div>
-        <div class="cert-card">
-          <a class="lb" href="Pictures/MCRTA.png" data-caption="Multi-Cloud Red Team Analyst — CWL"><img src="Pictures/MCRTA.png" alt="MCRTA"></a>
-          <div><strong>Multi-Cloud Red Team Analyst</strong></div>
-        </div>
-        <div class="cert-card">
-          <a class="lb" href="Pictures/PT1.png" data-caption="PT1 — Practical Pentesting"><img src="Pictures/PT1.png" alt="PT1"></a>
-          <div><strong>PT1</strong></div>
-        </div>
+        <div class="cert-card"><a class="lb" href="Pictures/OSCP+.png" data-caption="OSCP+ — OffSec"><img src="Pictures/OSCP+.png" alt="OSCP+"></a><div><strong>OSCP+</strong><div class="muted">OffSec</div></div></div>
+        <div class="cert-card"><a class="lb" href="Pictures/OSCP.png" data-caption="OSCP — OffSec"><img src="Pictures/OSCP.png" alt="OSCP"></a><div><strong>OSCP</strong><div class="muted">OffSec</div></div></div>
+        <div class="cert-card"><a class="lb" href="Pictures/ejpt.png" data-caption="eJPT — INE"><img src="Pictures/ejpt.png" alt="eJPT"></a><div><strong>eJPT</strong><div class="muted">INE</div></div></div>
+        <div class="cert-card"><a class="lb" href="Pictures/CEH.png" data-caption="CEH — EC-Council"><img src="Pictures/CEH.png" alt="CEH"></a><div><strong>CEH</strong><div class="muted">EC-Council</div></div></div>
+        <div class="cert-card"><a class="lb" href="Pictures/ceh-prac.png" data-caption="CEH Practical"><img src="Pictures/ceh-prac.png" alt="CEH Practical"></a><div><strong>CEH Practical</strong></div></div>
+        <div class="cert-card"><a class="lb" href="Pictures/Fortinet.png" data-caption="Fortinet Cyber Security Associate"><img src="Pictures/Fortinet.png" alt="Fortinet"></a><div><strong>Fortinet Cyber Security Associate</strong></div></div>
+        <div class="cert-card"><a class="lb" href="Pictures/crta.png" data-caption="Certified Red Team Analyst — CWL"><img src="Pictures/crta.png" alt="CRTA"></a><div><strong>Certified Red Team Analyst</strong></div></div>
+        <div class="cert-card"><a class="lb" href="Pictures/MCRTA.png" data-caption="Multi-Cloud Red Team Analyst — CWL"><img src="Pictures/MCRTA.png" alt="MCRTA"></a><div><strong>Multi-Cloud Red Team Analyst</strong></div></div>
+        <div class="cert-card"><a class="lb" href="Pictures/PT1.png" data-caption="PT1 — Practical Pentesting"><img src="Pictures/PT1.png" alt="PT1"></a><div><strong>PT1</strong></div></div>
       </div>
       <p class="muted" style="margin-top:8px">Click any certificate to view full-size (← / → to navigate).</p>
     </section>
@@ -238,8 +213,6 @@
 
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
-
-  // Simple lightbox
   const links=[...document.querySelectorAll('a.lb')];
   const overlay=document.getElementById('lb'), img=document.getElementById('lbImg'), cap=document.getElementById('lbCap');
   const prev=overlay.querySelector('.lb-prev'), next=overlay.querySelector('.lb-next'), close=overlay.querySelector('.lb-close');
