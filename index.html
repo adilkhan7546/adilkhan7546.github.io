@@ -20,19 +20,14 @@
   *{box-sizing:border-box}
   html,body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.7 Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
 
-  /* ===== Matrix canvas (subtle hacker vibe) — behind all content ===== */
+  /* ===== Matrix canvas (subtle hacker vibe) ===== */
   #matrix{
-    position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:0.08; /* super subtle */
+    position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.08;
   }
 
   /* ===== Top nav ===== */
-  .nav{
-    position:relative;z-index:2;max-width:1100px;margin:0 auto;
-    padding:18px 18px 10px;display:flex;align-items:center;justify-content:space-between
-  }
-  .brand{
-    display:flex;align-items:center;gap:14px; /* makes logo and name share baseline */
-  }
+  .nav{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:18px 18px 10px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:12px;color:var(--text)}
   /* Hacker-styled terminal tag */
   .hacker-logo{
     font-size:22px; line-height:1; font-family:"Courier New",monospace; color:#00ff88;
@@ -47,10 +42,8 @@
     100%{opacity:1; text-shadow:0 0 6px #00ff88,0 0 12px #00ffcc}
   }
   .brand .name{
-    font-weight:800;font-size:22px;line-height:1;display:inline-block;color:var(--text);
-    text-shadow:0 1px 0 #000;
+    font-weight:800; letter-spacing:.3px; font-size:22px; line-height:1; display:inline-block;
   }
-
   .nav a{color:var(--text);opacity:.9;text-decoration:none;margin-left:20px}
   .nav a:hover{color:var(--accent)}
 
@@ -98,6 +91,29 @@
   .cert-card img:hover{transform:scale(1.03);box-shadow:0 0 18px rgba(59,209,255,.25)}
   .muted{color:var(--muted)}
 
+  /* ===== Lightbox (centered overlay) ===== */
+  .lb-overlay{
+    position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+    background:rgba(0,0,0,.9); z-index:10000;
+  }
+  .lb-overlay.show{ display:flex; }
+  .lb-wrap{ position:relative; max-width:min(92vw,1200px); max-height:90vh; }
+  .lb-img{ max-width:100%; max-height:90vh; border-radius:12px; box-shadow:0 0 24px rgba(59,209,255,.4); }
+  .lb-caption{ color:#cfefff; text-align:center; margin-top:10px; }
+  .lb-btn{
+    position:absolute; top:50%; transform:translateY(-50%);
+    background:#0f141b; border:1px solid #1d2b38; color:#dff6ff;
+    padding:10px 14px; border-radius:10px; cursor:pointer; font-size:18px;
+  }
+  .lb-prev{ left:-56px; } .lb-next{ right:-56px; }
+  .lb-close{
+    position:absolute; top:-46px; right:-6px; background:#0f141b; border:1px solid #1d2b38;
+    color:#dff6ff; padding:6px 12px; border-radius:8px; cursor:pointer;
+  }
+  @media(max-width:680px){
+    .lb-prev{ left:6px; } .lb-next{ right:6px; } .lb-close{ top:8px; right:8px; }
+  }
+
   /* ===== Links & footer ===== */
   a{color:var(--accent)} a:hover{color:var(--accent2)}
   footer{max-width:1100px;margin:34px auto 28px;padding:0 18px;color:var(--muted);text-align:left}
@@ -105,7 +121,7 @@
 </head>
 <body>
 
-  <!-- Subtle matrix rain canvas (kept behind content) -->
+  <!-- Subtle matrix rain canvas -->
   <canvas id="matrix"></canvas>
 
   <!-- Top navigation -->
@@ -174,7 +190,10 @@
         <!-- Expertise (portfolio-style experience) -->
         <div id="experience" class="section">
           <h3>Expertise</h3>
-          <p style="margin:0 0 8px 0;"><strong>Senior Penetration Tester — Nayatel</strong> <span class="muted">(Feb 2022 – Present)</span></p>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <img src="Pictures/nayatel.png" alt="Nayatel" style="height:40px;border-radius:6px;">
+            <p style="margin:0;"><strong>Senior Penetration Tester — Nayatel</strong> <span class="muted">(Feb 2022 – Present)</span></p>
+          </div>
           <ul class="bullets">
             <li>End-to-end pentesting across web, API, infra, AD & cloud.</li>
             <li>Exploited flaws: SQLi, IDOR, XSS, privilege escalation.</li>
@@ -194,7 +213,7 @@
       </div>
     </section>
 
-    <!-- ===== Projects ===== -->
+    <!-- ===== Projects (full width) ===== -->
     <section id="projects" class="section">
       <h3>Projects</h3>
       <div class="grid three">
@@ -216,62 +235,44 @@
       </div>
     </section>
 
-    <!-- ===== Certifications (lightbox) ===== -->
+    <!-- ===== Certifications (full width, lightbox) ===== -->
     <section id="certs" class="section">
       <h3>Certifications</h3>
       <div class="grid three">
         <div class="cert-card">
-          <a class="lb" href="Pictures/OSCP+.png" data-caption="OSCP+ — OffSec">
-            <img src="Pictures/OSCP+.png" alt="OSCP+" />
-          </a>
+          <a class="lb" href="Pictures/OSCP+.png" data-caption="OSCP+ — OffSec"><img src="Pictures/OSCP+.png" alt="OSCP+"></a>
           <div><strong>OSCP+</strong><div class="muted">OffSec</div></div>
         </div>
         <div class="cert-card">
-          <a class="lb" href="Pictures/OSCP.png" data-caption="OSCP — OffSec">
-            <img src="Pictures/OSCP.png" alt="OSCP" />
-          </a>
+          <a class="lb" href="Pictures/OSCP.png" data-caption="OSCP — OffSec"><img src="Pictures/OSCP.png" alt="OSCP"></a>
           <div><strong>OSCP</strong><div class="muted">OffSec</div></div>
         </div>
         <div class="cert-card">
-          <a class="lb" href="Pictures/ejpt.png" data-caption="eJPT — INE">
-            <img src="Pictures/ejpt.png" alt="eJPT" />
-          </a>
+          <a class="lb" href="Pictures/ejpt.png" data-caption="eJPT — INE"><img src="Pictures/ejpt.png" alt="eJPT"></a>
           <div><strong>eJPT</strong><div class="muted">INE</div></div>
         </div>
         <div class="cert-card">
-          <a class="lb" href="Pictures/CEH.png" data-caption="CEH — EC-Council">
-            <img src="Pictures/CEH.png" alt="CEH" />
-          </a>
+          <a class="lb" href="Pictures/CEH.png" data-caption="CEH — EC-Council"><img src="Pictures/CEH.png" alt="CEH"></a>
           <div><strong>CEH</strong><div class="muted">EC-Council</div></div>
         </div>
         <div class="cert-card">
-          <a class="lb" href="Pictures/ceh-prac.png" data-caption="CEH Practical">
-            <img src="Pictures/ceh-prac.png" alt="CEH Practical" />
-          </a>
+          <a class="lb" href="Pictures/ceh-prac.png" data-caption="CEH Practical"><img src="Pictures/ceh-prac.png" alt="CEH Practical"></a>
           <div><strong>CEH Practical</strong></div>
         </div>
         <div class="cert-card">
-          <a class="lb" href="Pictures/Fortinet.png" data-caption="Fortinet Cyber Security Associate">
-            <img src="Pictures/Fortinet.png" alt="Fortinet" />
-          </a>
+          <a class="lb" href="Pictures/Fortinet.png" data-caption="Fortinet Cyber Security Associate"><img src="Pictures/Fortinet.png" alt="Fortinet"></a>
           <div><strong>Fortinet Cyber Security Associate</strong></div>
         </div>
         <div class="cert-card">
-          <a class="lb" href="Pictures/crta.png" data-caption="Certified Red Team Analyst — CWL">
-            <img src="Pictures/crta.png" alt="CRTA" />
-          </a>
+          <a class="lb" href="Pictures/crta.png" data-caption="Certified Red Team Analyst — CWL"><img src="Pictures/crta.png" alt="CRTA"></a>
           <div><strong>Certified Red Team Analyst</strong></div>
         </div>
         <div class="cert-card">
-          <a class="lb" href="Pictures/MCRTA.png" data-caption="Multi-Cloud Red Team Analyst — CWL">
-            <img src="Pictures/MCRTA.png" alt="MCRTA" />
-          </a>
+          <a class="lb" href="Pictures/MCRTA.png" data-caption="Multi-Cloud Red Team Analyst — CWL"><img src="Pictures/MCRTA.png" alt="MCRTA"></a>
           <div><strong>Multi-Cloud Red Team Analyst</strong></div>
         </div>
         <div class="cert-card">
-          <a class="lb" href="Pictures/PT1.png" data-caption="PT1 — Practical Pentesting">
-            <img src="Pictures/PT1.png" alt="PT1" />
-          </a>
+          <a class="lb" href="Pictures/PT1.png" data-caption="PT1 — Practical Pentesting"><img src="Pictures/PT1.png" alt="PT1"></a>
           <div><strong>PT1</strong></div>
         </div>
       </div>
@@ -284,7 +285,7 @@
   </main>
 
   <!-- Lightbox -->
-  <div class="lb-overlay" id="lb" style="display:none;">
+  <div class="lb-overlay" id="lb">
     <div class="lb-wrap">
       <button class="lb-close">✕</button>
       <button class="lb-btn lb-prev">‹</button>
@@ -300,45 +301,24 @@
 
   /* Simple lightbox */
   const links=[...document.querySelectorAll('a.lb')];
-  const overlay=document.getElementById('lb'),
-        img=document.getElementById('lbImg'),
-        cap=document.getElementById('lbCap');
-  const prev=overlay.querySelector('.lb-prev'),
-        next=overlay.querySelector('.lb-next'),
-        closeBtn=overlay.querySelector('.lb-close');
-
+  const overlay=document.getElementById('lb'), img=document.getElementById('lbImg'), cap=document.getElementById('lbCap');
+  const prev=overlay.querySelector('.lb-prev'), next=overlay.querySelector('.lb-next'), close=overlay.querySelector('.lb-close');
   let idx=0;
-  function open(i){
-    idx=i;
-    const a=links[idx];
-    img.src=a.getAttribute('href');
-    img.alt=a.querySelector('img')?.alt||'';
-    cap.textContent=a.dataset.caption||img.alt||'';
-    overlay.style.display='flex';
-    overlay.classList.add('show');
-    document.body.style.overflow='hidden';
-  }
-  function closeLB(){
-    overlay.classList.remove('show');
-    overlay.style.display='none';
-    img.src='';
-    document.body.style.overflow='';
-  }
-  function nav(s){ idx=(idx+s+links.length)%links.length; open(idx); }
-
+  function open(i){idx=i; const a=links[idx]; img.src=a.getAttribute('href'); img.alt=a.querySelector('img')?.alt||''; cap.textContent=a.dataset.caption||img.alt||''; overlay.classList.add('show'); document.body.style.overflow='hidden';}
+  function closeLB(){overlay.classList.remove('show'); img.src=''; document.body.style.overflow='';}
+  function nav(s){idx=(idx+s+links.length)%links.length; open(idx);}
   links.forEach((a,i)=>a.addEventListener('click',e=>{e.preventDefault(); open(i);})); 
-  closeBtn.addEventListener('click',closeLB);
-  overlay.addEventListener('click',e=>{ if(e.target===overlay) closeLB(); });
+  close.addEventListener('click',closeLB);
+  overlay.addEventListener('click',e=>{if(e.target===overlay) closeLB();});
   prev.addEventListener('click',()=>nav(-1));
   next.addEventListener('click',()=>nav(1));
-  addEventListener('keydown',e=>{
-    if(!overlay.classList.contains('show')) return;
+  addEventListener('keydown',e=>{if(!overlay.classList.contains('show')) return;
     if(e.key==='Escape') closeLB();
     if(e.key==='ArrowLeft') nav(-1);
     if(e.key==='ArrowRight') nav(1);
   });
 
-  /* Subtle Matrix Rain (keeps theme, very low opacity, behind content) */
+  /* Subtle Matrix Rain (keeps theme, very low opacity) */
   const c=document.getElementById('matrix');
   const ctx=c.getContext('2d');
   const glyphs='01█▓▒░$#@*<>[]{}()+-_/\\|=';
